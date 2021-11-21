@@ -1,0 +1,22 @@
+{
+        "name": "atk14/cookie-consent",
+        "type": "library",
+        "description": "",
+        "keywords": [],
+        "homepage": "https://github.com/atk14/CookieConsent",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "ATK14 Development Team",
+                        "homepage": "https://github.com/orgs/atk14/people"
+                }
+        ],
+        "require": {
+                "php": ">=5.4.0"
+        },
+        "require-dev": {
+        },
+        "autoload": {
+                "classmap": ["src/lib"]
+        }
+}

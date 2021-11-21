@@ -1,0 +1,28 @@
+necessary:
+  code: "necessary"
+  necessary: true
+  title_en: "Required Cookies"
+  title_cs: "Potřebné cookies"
+  version: 1
+
+analytics:
+  code: "analytics"
+  title_en: "Analytic Cookies"
+  title_cs: "Analytické cookies"
+  cookies_regexp: "/^(_ga.*|_gid.*|_utm.*)$/"
+  version: 2
+
+advertising:
+  code: "advertising"
+  title_en: "Marketing & Advertising"
+  title_cs: "Reklamní cookies"
+  cookies_regexp: "/^(_fb.*)$/"
+  version: 3
+
+disabled:
+  code: "disabled"
+  active: false
+  title_en: "Disabled Section"
+  title_cs: "Zakázaná sekce"
+  cookies_regexp: "/^disabled_cookie$/"
+  version: 1
