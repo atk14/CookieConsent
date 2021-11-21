@@ -16,7 +16,7 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/app/models/cookie_consent_category.php app/models/
     ln -s ../../../../vendor/atk14/cookie-cookie/src/app/views/shared/layout/_cookie_consent.tpl app/views/shared/layout/
     ln -s ../../vendor/atk14/cookie-consent/src/test/models/tc_cookie_consent.php test/models/
-    ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.php test/fixtures/
+    ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
 
 Copy migration to a proper filename into your project and perform the migration script:
 		
