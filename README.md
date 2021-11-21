@@ -3,7 +3,7 @@ Cookie Consent
 
 Installation
 ============
-		
+
     cd path/to/your/project/
     composer require atk14/cookie-consent
 
@@ -19,7 +19,7 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
 
 Copy migration to a proper filename into your project and perform the migration script:
-		
+
     cp vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.php db/migrations/
     ./scripts/migrate
 
@@ -32,5 +32,15 @@ Linking a proper style form either for  or Bootstrap 4 (scss) or Bootstrap 3 (le
     ln -s ../../vendor/atk14/cookie-consent/src/public/styles/cookie_consent.less public/styles/
 
 Now include the selected style to your application style.
+
+Add shared template into layout (app/layouts/default.tpl). Somewhere close to the end of page.
+
+    {render partial="shared/cookie_consent/banner"}
+
+Add new section into your administration in app/controllers/admin/admin.php.
+
+    ...
+    array(_("Cookie consent"),    "cookie_consent_categories"),
+    ...
 
 [//]: # ( vim: set ts=2 et: )
