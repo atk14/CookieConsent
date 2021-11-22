@@ -19,9 +19,11 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
     ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
 
-Copy migration to a proper filename into your project and perform the migration script:
+Copy migration files into your project and perform the migration script:
 
-    cp vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.php db/migrations/
+    cp vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.sql db/migrations/
+    cp vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consent_categories_data_migration.php db/migrations/
+
     ./scripts/migrate
 
 Linking a proper style form either for  or Bootstrap 4 (scss) or Bootstrap 3 (less).
