@@ -17,6 +17,7 @@ Installation
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/shared/cookie_consent app/views/shared
     ln -s ../../vendor/atk14/cookie-consent/src/test/models/tc_cookie_consent.php test/models/
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
+    ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
 
 Copy migration to a proper filename into your project and perform the migration script:
 
@@ -42,5 +43,22 @@ Add new section into your administration in app/controllers/admin/admin.php.
     ...
     array(_("Cookie consent"),    "cookie_consent_categories"),
     ...
+
+Include public/scripts/utils/cookie_consent.js in gulpfile.js into applicationScripts.
+
+    var applicationScripts = [
+      // ...
+      "public/scripts/utils/cookie_consent.js",
+      "public/scripts/application.js"
+    ];
+
+Usage
+=====
+
+Checking whether a category of the cookie consent is accepted or not in Javascript:
+
+    if ( window.UTILS.cookieConsent.accepted( "advertising" ) ) {
+      // accepted
+    }
 
 [//]: # ( vim: set ts=2 et: )
