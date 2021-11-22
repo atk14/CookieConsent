@@ -20,7 +20,7 @@ class CookieConsentCategoriesDataMigration extends ApplicationMigration {
 		CookieConsentCategory::CreateNewRecord([
 			"id" => 2,
 			"code" => "analytics",
-			"active" => false,
+			"active" => DEVELOPMENT,
 			"cookies_regexp" => "/^(_ga.*|_gid.*|_utm.*)$/",
 			"necessary" => false,
 			"title_en" => "Analytic Cookies",
@@ -32,7 +32,7 @@ class CookieConsentCategoriesDataMigration extends ApplicationMigration {
 		CookieConsentCategory::CreateNewRecord([
 			"id" => 3,
 			"code" => "advertising",
-			"active" => false,
+			"active" => DEVELOPMENT,
 			"cookies_regexp" => "/^(_fb)$/",
 			"necessary" => false,
 			"title_cs" => "Reklamní cookies",
