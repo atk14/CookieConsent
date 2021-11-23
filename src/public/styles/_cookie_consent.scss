@@ -54,6 +54,21 @@
 	div.form-check.custom-control.custom-checkbox {
 		@extend .custom-switch;
 	}
+
+	.custom-control-input:checked ~ .custom-control-label::before {
+		background-color: $success;
+		border-color: $success;
+	}
+	div.form-check.custom-control.custom-checkbox .custom-control-input:disabled:checked ~ .custom-control-label::before {
+		background-color: rgba( $success, 0.5 );
+		border-color: $success;
+	}
+	.custom-control-input:focus ~ .custom-control-label::before {
+		box-shadow: rgba($success, 0.25) 0px 0px 0px 3.2px;
+	}
+	.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+		border-color: $gray-500;
+	}
 }
 
 #cookie_consent_modal_id {
