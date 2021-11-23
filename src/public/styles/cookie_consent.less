@@ -36,12 +36,30 @@
 
 // properties for cookie modal
 #form_cookie_consents_edit {
+
 	.button-container {
 		.btn {
-			margin-bottom: @grid-gutter-width/4;
 			white-space: normal;
 		}
+		@media(max-width: @screen-sm-max) and (min-width: @screen-sm-min) {
+			.btn {
+				margin-bottom: @grid-gutter-width/4 !important;
+			}
+		}
+		@media (max-width: @screen-xs-max) {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			.btn {
+				margin-bottom: @grid-gutter-width/4;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
 	}
+
+
 	fieldset:last-child, form {
 		margin-bottom: 0;
 	}
