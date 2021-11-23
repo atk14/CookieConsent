@@ -33,7 +33,7 @@ class CookieConsentCategoriesDataMigration extends ApplicationMigration {
 			"id" => 3,
 			"code" => "advertising",
 			"active" => DEVELOPMENT,
-			"cookies_regexp" => "/^(_fb)$/",
+			"cookies_regexp" => "/^(_fb.*)$/",
 			"necessary" => false,
 			"title_cs" => "Reklamní cookies",
 			"title_en" => "Marketing & Advertising",
