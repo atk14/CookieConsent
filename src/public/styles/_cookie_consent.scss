@@ -51,10 +51,12 @@
 		font-weight: $font-weight-bold;
 	}
 
+	// make checkboxes as switches
 	div.form-check.custom-control.custom-checkbox {
 		@extend .custom-switch;
 	}
 
+	// colorize switches green/success
 	.custom-control-input:checked ~ .custom-control-label::before {
 		background-color: $success;
 		border-color: $success;
