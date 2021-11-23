@@ -51,6 +51,7 @@ class CookieConsentCategoriesForm extends AdminForm {
 
 		$this->add_translatable_field("description", new MarkdownField([
 			"label" => _("Popis"),
+			"help_text" => _("Formátování Markdown")
 		]));
 	}
 }
