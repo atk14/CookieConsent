@@ -63,9 +63,17 @@ Include public/scripts/utils/cookie_consent.js in gulpfile.js into applicationSc
 Usage
 -----
 
-Checking whether a category of the cookie consent is accepted or not in Javascript:
+Checking whether a category of the cookie consent is accepted or not in Javascrip and PHP:
+
+#### Javascript
 
     if ( window.UTILS.cookieConsent.accepted( "advertising" ) ) {
+      // accepted
+    }
+
+#### PHP
+
+    if(CookieConsent::Accepted("advertising")){
       // accepted
     }
 
