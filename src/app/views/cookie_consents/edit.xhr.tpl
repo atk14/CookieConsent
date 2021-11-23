@@ -13,7 +13,7 @@
 	$("#cookie_consent_modal_id").remove();
 
 	var $modal = $({jstring}{modal id=cookie_consent_modal_id title="{t}Nastavení cookies{/t}"}
-		{render partial="edit_form"}
+		{render partial="edit"}
 	{/modal}{/jstring});
 
 	$modal.appendTo("body");
