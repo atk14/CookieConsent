@@ -21,7 +21,7 @@ class CookieConsentCategoriesDataMigration extends ApplicationMigration {
 			"id" => 2,
 			"code" => "analytics",
 			"active" => DEVELOPMENT,
-			"cookies_regexp" => "/^(_ga.*|_gid.*|_utm.*)$/",
+			"cookies_regexp" => "/^(_ga.*|_gid.*|_gcl.*|_utm.*)$/",
 			"necessary" => false,
 			"title_en" => "Analytic Cookies",
 			"title_cs" => "Analytická cookies",
