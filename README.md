@@ -19,8 +19,12 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
     ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
 
-Copy migration files into your project and perform the migration script:
+Symlink or copy migration files into your project and perform the migration script:
 
+    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.sql db/migrations
+    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consent_categories_data_migration.php db/migrations
+
+    #or
     cp vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.sql db/migrations/
     cp vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consent_categories_data_migration.php db/migrations/
 
