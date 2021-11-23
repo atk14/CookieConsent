@@ -1,0 +1,69 @@
+// We need to have the cookie consent banner under a modal dialog
+.cookie_consent_banner_container {
+  >div {
+		z-index: 990; // must be lower than modal z-index
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		display: block;
+		padding: @grid-gutter-width/2 0;
+		background-color: fade(white, 97%);
+		box-shadow: 0px 0px 16px 0 rgba(0,0,0,.250);
+		@supports( backdrop-filter: blur(10px) ){
+			background-color: fade(white, 90%);
+			backdrop-filter: blur(10px);
+		}
+
+    .container-fluid {
+      .container;
+    }
+
+		.btn {
+			min-width: 120px;
+		}
+
+    .btn-secondary {
+      .btn-default;
+    }
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+
+		.rejection-link {
+			font-size:  @font-size-small;
+		}
+	}
+}
+
+#form_cookie_consents_edit {
+	.button-container {
+		.btn {
+			margin-bottom: @grid-gutter-width/4;
+			white-space: normal;
+		}
+	}
+	fieldset:last-child, form {
+		margin-bottom: 0;
+	}
+
+	label {
+		font-weight: bold;
+	}
+}
+
+#cookie_consent_modal_id {
+	.modal-dialog {
+		max-width: 1000px;
+
+    .modal-body {
+      padding: @grid-gutter-width/4 @grid-gutter-width/2;
+    }
+
+    .btn-secondary {
+      .btn-default;
+    }
+	}
+}
