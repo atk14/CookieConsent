@@ -32,9 +32,11 @@
 }
 
 #form_cookie_consents_edit {
-
 	
 	.button-container {
+		.btn {
+			white-space: normal;
+		}
 		@include media-breakpoint-only(sm){
 			.btn {
 				margin-bottom: $grid-gutter-width/4 !important;
