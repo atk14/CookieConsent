@@ -24,10 +24,6 @@
 			min-width: 120px;
 		}
 
-    .btn-secondary {
-      .btn-default;
-    }
-
 		p:last-child {
 			margin-bottom: 0;
 		}
@@ -38,6 +34,7 @@
 	}
 }
 
+// properties for cookie modal
 #form_cookie_consents_edit {
 	.button-container {
 		.btn {
@@ -52,6 +49,23 @@
 	label {
 		font-weight: bold;
 	}
+
+	input[type="checkbox"] {
+		accent-color: @brand-success;
+	}
+}
+
+// properties for both cookie banner and modal
+.cookie_consent_banner_container, #form_cookie_consents_edit {
+	.btn-secondary {
+		.btn-default;
+		background-color: @gray-light !important;
+		background-image: none;
+		color: white;
+		&:hover {
+			background-color: @gray !important;
+		}
+	}
 }
 
 #cookie_consent_modal_id {
@@ -60,10 +74,6 @@
 
     .modal-body {
       padding: @grid-gutter-width/4 @grid-gutter-width/2;
-    }
-
-    .btn-secondary {
-      .btn-default;
     }
 	}
 }

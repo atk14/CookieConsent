@@ -167,8 +167,13 @@ class CookieConsentSettings {
 	 *	$settings->accepted("advertising"); // true or false
 	 */
 	function accepted($cookie_consent_category){
-		if(is_string($cookie_consent_category)){
-			$cookie_consent_category = CookieConsentCategory::GetInstanceByCode($cookie_consent_category);
+		if(!is_object($cookie_consent_category)){
+			$code = "$cookie_consent_category";
+			$cookie_consent_category = CookieConsentCategory::GetInstanceByCode($code);
+			if(!$cookie_consent_category){
+				trigger_error("there is no such CookieConsentCategory with code '$code'");
+				return false;
+			}
 		}
 		$code = $cookie_consent_category->getCode();
 		if($cookie_consent_category->isNecessary()){

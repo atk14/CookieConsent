@@ -1,8 +1,10 @@
 Cookie Consent
---------------
+==============
+
+Make your ATK14 app comply with the crazy EU cookie law.
 
 Installation
-============
+------------
 
     cd path/to/your/project/
     composer require atk14/cookie-consent
@@ -19,8 +21,12 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
     ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
 
-Copy migration files into your project and perform the migration script:
+Symlink or copy migration files into your project and perform the migration script:
 
+    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.sql db/migrations
+    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consent_categories_data_migration.php db/migrations
+
+    #or
     cp vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.sql db/migrations/
     cp vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consent_categories_data_migration.php db/migrations/
 
@@ -55,12 +61,32 @@ Include public/scripts/utils/cookie_consent.js in gulpfile.js into applicationSc
     ];
 
 Usage
-=====
+-----
 
-Checking whether a category of the cookie consent is accepted or not in Javascript:
+Checking whether a category of the cookie consent is accepted or not in Javascrip and PHP:
+
+#### Javascript
 
     if ( window.UTILS.cookieConsent.accepted( "advertising" ) ) {
       // accepted
     }
+
+#### PHP
+
+    if(CookieConsent::Accepted("advertising")){
+      // accepted
+    }
+
+Requirements
+------------
+
+You must have the [atk14/drink-markdown](https://packagist.org/packages/atk14/drink-markdown) package installed in your project.
+
+Helper [link_to_page](https://github.com/atk14/Atk14Skelet/blob/master/app/helpers/modifier.link_to_page.php) is used in template `src/app/views/cookie_consents/_edit.tpl`. Create a local copy of the template, if you want to make local changes in it.
+
+License
+-------
+
+CookieConsent is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
 
 [//]: # ( vim: set ts=2 et: )
