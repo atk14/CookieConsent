@@ -283,7 +283,7 @@ class CookieConsentSettings {
 	function _clearCookie($response,$cookie_name){
 		$domain = $this->request->getHttpHost();
 		$expire = $this->_time() - 60 * 60 * 24 * 365 * 2;
-		$this->response->addCookie("$cookie_name","",[
+		$response->addCookie("$cookie_name","",[
 			"expire" => $expire,
 			"path" => "/",
 			"domain" => $domain,
