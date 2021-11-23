@@ -1,4 +1,4 @@
-<div class="container">
+<div class="cookies-form-container">
 <h1>{$page_title}</h1>
 
 {render partial="edit"}
