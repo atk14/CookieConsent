@@ -1,9 +1,26 @@
 <?php
 // migration from package atk14/cookie-consent
 
-class CookieConsentCategoriesDataMigration extends ApplicationMigration {
+class CookieConsentsDataMigration extends ApplicationMigration {
 
 	function up(){
+		$cookie_consent = CookieConsent::CreateNewRecord([
+			"id" => 1,
+			//
+			"banner_title_en" => 'Cookies',
+			"banner_title_cs" => 'Cookies',
+			"banner_text_en" => 'We use so-called cookies to operate our website. Cookies are files used to personalize the content of the website, to measure its functionality and to ensure your maximum satisfaction. You consent to the use of cookies by clicking on the "OK" button.',
+			"banner_text_cs" => 'K provozování našeho webu využíváme takzvané cookies. Cookies jsou soubory sloužící k přizpůsobení obsahu webu, k měření jeho funkčnosti a k zajištění vaší maximální spokojenosti. Souhlas s používáním cookies udělíte kliknutím na tlačítko „OK“.',
+			//
+			"dialog_title_en" => 'Cookie Settings',
+			"dialog_title_cs" => 'Nastavení cookies',
+			"dialog_header_text_en" => 'Here you have the option to adjust the use of cookies based on your own preferences.',
+			"dialog_header_text_cs" => "Zde máte možnost upravit si používání cookies na základě vlastních preferencí.",
+			"dialog_footer_text_en" => 'For more information about cookies, see <a href="#">Privacy Policy</a>',
+			"dialog_footer_text_cs" => 'Více o cookies najdete v <a href="#">Zásadách ochrany osobních údajů</a>',
+		]);
+
+		// there is a fixture for testing
 		if(TEST){ return; }
 
 		CookieConsentCategory::CreateNewRecord([

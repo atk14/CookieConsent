@@ -1,5 +1,17 @@
 -- migration from package atk14/cookie-consent
 
+CREATE TABLE cookie_consents (
+	id INT PRIMARY KEY,
+	--
+	updated_by_user_id INT,
+	--
+	created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMP,
+	--
+	CONSTRAINT chk_cookieconsents_id CHECK(id = 1), -- there should be only one row in this table
+	CONSTRAINT fk_cookieconsents_upd_users FOREIGN KEY (updated_by_user_id) REFERENCES users
+);
+
 CREATE SEQUENCE seq_cookie_consent_categories START WITH 11;
 CREATE TABLE cookie_consent_categories (
 	id INT PRIMARY KEY DEFAULT NEXTVAL('seq_cookie_consent_categories'),

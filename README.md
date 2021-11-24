@@ -15,6 +15,7 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/app/controllers/cookie_consents_controller.php app/controllers/
     ln -s ../../vendor/atk14/cookie-consent/src/app/forms/cookie_consents app/forms/
     ln -s ../../vendor/atk14/cookie-consent/src/app/views/cookie_consents app/views/
+    ln -s ../../vendor/atk14/cookie-consent/src/app/models/cookie_consent.php app/models/
     ln -s ../../vendor/atk14/cookie-consent/src/app/models/cookie_consent_category.php app/models/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/shared/cookie_consent app/views/shared
     ln -s ../../vendor/atk14/cookie-consent/src/test/models/tc_cookie_consent.php test/models/
@@ -23,8 +24,8 @@ Installation
 
 Symlink or copy migration files into your project and perform the migration script:
 
-    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.sql db/migrations
-    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consent_categories_data_migration.php db/migrations
+    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consents.sql db/migrations
+    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consents_data_migration.php db/migrations
 
     #or
     cp vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consent_migration.sql db/migrations/
