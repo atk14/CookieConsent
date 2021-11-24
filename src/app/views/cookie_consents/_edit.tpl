@@ -1,5 +1,5 @@
-<p>{t}Zde máte možnost upravit si používání cookies na základě vlastních preferencí.{/t}</p>
+{!$cookie_consent->getDialogHeaderText()|markdown}
 
 {render partial="edit_form"}
 
-<p><small><a href="{"privacy_policy"|link_to_page}">{t}Zásady ochrany osobních údajů{/t}</a></small></p>
+{!$cookie_consent->getDialogFooterText()|markdown}

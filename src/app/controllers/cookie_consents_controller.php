@@ -7,7 +7,11 @@ class CookieConsentsController extends ApplicationController {
 	}
 
 	function edit(){
-		$this->page_title = $this->breadcrumbs[] = _("Nastavení cookies");
+		$cookie_consent = $this->tpl_data["cookie_consent"] = CookieConsent::GetInstance();
+		$this->page_title = $cookie_consent->getDialogTitle();
+		if(isset($this->breadcrumbs)){
+			$this->breadcrumbs[] = $cookie_consent->getDialogTitle();
+		}
 
 		if($this->request->post() && ($d = $this->form->validate($this->params))){
 			$settings = CookieConsent::GetSettings($this->request);

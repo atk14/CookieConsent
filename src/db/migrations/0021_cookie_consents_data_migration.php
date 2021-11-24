@@ -16,8 +16,8 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"dialog_title_cs" => 'Nastavení cookies',
 			"dialog_header_text_en" => 'Here you have the option to adjust the use of cookies based on your own preferences.',
 			"dialog_header_text_cs" => "Zde máte možnost upravit si používání cookies na základě vlastních preferencí.",
-			"dialog_footer_text_en" => 'For more information about cookies, see <a href="#">Privacy Policy</a>',
-			"dialog_footer_text_cs" => 'Více o cookies najdete v <a href="#">Zásadách ochrany osobních údajů</a>',
+			"dialog_footer_text_en" => 'For more information about cookies, see <a href="#">Privacy Policy</a>.',
+			"dialog_footer_text_cs" => 'Více o cookies najdete v <a href="#">Zásadách ochrany osobních údajů</a>.',
 		]);
 
 		// there is a fixture for testing
