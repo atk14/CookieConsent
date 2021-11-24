@@ -24,7 +24,7 @@ class CookieConsentCategoriesDataMigration extends ApplicationMigration {
 			"cookies_regexp" => "/^(_ga.*|_gid.*|_gcl.*|_utm.*)$/",
 			"necessary" => false,
 			"title_en" => "Analytic Cookies",
-			"title_cs" => "Analytická cookies",
+			"title_cs" => "Analytické cookies",
 			"description_en" => "Analytical cookies allow us to measure the performance of our website and the effects of the adjustments we make to the website on an ongoing basis. We process the data obtained through these cookies in aggregate, without using identifiers that point to specific users of our website. If you disable the use of analytics cookies in relation to your visit, we lose the ability to analyse performance and optimise our measures.",
 			"description_cs" => "Analytické cookies nám umožňují měření výkonu našeho webu a účinků úprav, které průběžně na web nasazujeme. Data získaná pomocí těchto cookies zpracováváme souhrnně, bez použití identifikátorů, které ukazují na konkrétní uživatelé našeho webu. Pokud vypnete používání analytických cookies ve vztahu k vaší návštěvě, ztrácíme možnost analýzy výkonu a optimalizace našich opatření.",
 		]);
