@@ -25,6 +25,7 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 
 		CookieConsentCategory::CreateNewRecord([
 			"id" => 1,
+			"cookie_consent_id" => 1,
 			"code" => "necessary",
 			"necessary" => true,
 			"active" => true,
@@ -36,6 +37,7 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 
 		CookieConsentCategory::CreateNewRecord([
 			"id" => 2,
+			"cookie_consent_id" => 1,
 			"code" => "analytics",
 			"active" => DEVELOPMENT,
 			"cookies_regexp" => "/^(_ga.*|_gid.*|_gcl.*|_utm.*)$/",
@@ -48,6 +50,7 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 
 		CookieConsentCategory::CreateNewRecord([
 			"id" => 3,
+			"cookie_consent_id" => 1,
 			"code" => "advertising",
 			"active" => DEVELOPMENT,
 			"cookies_regexp" => "/^(_fb.*)$/",

@@ -1,4 +1,5 @@
 necessary:
+  cookie_consent_id: 1
   code: "necessary"
   necessary: true
   title_en: "Required Cookies"
@@ -6,6 +7,7 @@ necessary:
   version: 1
 
 analytics:
+  cookie_consent_id: 1
   code: "analytics"
   title_en: "Analytic Cookies"
   title_cs: "Analytické cookies"
@@ -13,6 +15,7 @@ analytics:
   version: 2
 
 advertising:
+  cookie_consent_id: 1
   code: "advertising"
   title_en: "Marketing & Advertising"
   title_cs: "Reklamní cookies"
@@ -20,6 +23,7 @@ advertising:
   version: 3
 
 disabled:
+  cookie_consent_id: 1
   code: "disabled"
   active: false
   title_en: "Disabled Section"

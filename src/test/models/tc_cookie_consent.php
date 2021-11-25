@@ -33,6 +33,12 @@ class TcCookieConsent extends TcBase {
 		$this->assertFalse($settings->needsToBeConfirmed());
 	}
 
+	function test_CookieConsentCategory(){
+		$ccc = $this->cookie_consent_categories["necessary"];
+		$cookie_consent = $ccc->getCookieConsent();
+		$this->assertEquals(1,$cookie_consent->getId());
+	}
+
 	function test_compileCookieData(){
 		$request = new HTTPRequest();
 		$settings = CookieConsent::GetSettings($request,["current_time" => 1637443696]);
