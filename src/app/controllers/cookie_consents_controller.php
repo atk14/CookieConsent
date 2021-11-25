@@ -27,6 +27,7 @@ class CookieConsentsController extends ApplicationController {
 			}
 
 			$settings->saveSettings($this->response);
+			$this->_log_saving("saved_in_dialog",$settings);
 
 			if(!$this->request->xhr()){
 				$this->flash->success(_("Nastavení cookies bylo uloženo"));
@@ -37,16 +38,21 @@ class CookieConsentsController extends ApplicationController {
 
 	function accept_all(){
 		$this->_accept_or_reject_all("acceptAll",[
+			"action_taken" => $this->params->defined("dialog") ? "accept_all_in_dialog" : "accept_all",
 			"flash_message" => _("Používání všech cookies bylo přijato"),
 		]);
 	}
 
 	function reject_all(){
-		$this->_accept_or_reject_all("rejectAll");
+		$this->_accept_or_reject_all("rejectAll",[
+			"action_taken" => $this->params->defined("dialog") ? "reject_all_in_dialog" : "reject_all",
+			"flash_message" => _("Používání cookies bylo zamítnuto"),
+		]);
 	}
 
 	function _accept_or_reject_all($method,$options = []){
 		$options += [
+			"accept_all" => "???",
 			"flash_message" => _("Nastavení cookies bylo uloženo"),
 		];
 		if(!$this->request->post()){
@@ -56,11 +62,28 @@ class CookieConsentsController extends ApplicationController {
 		$settings = CookieConsent::GetSettings($this->request);
 		$settings->$method();
 		$settings->saveSettings($this->response);
+		$this->_log_saving($options["action_taken"],$settings);
 		if($this->request->xhr()){
 			$this->template_name = "close_dialog";
 			return;
 		}
 		$this->flash->success($options["flash_message"]);
 		$this->_redirect_to("main/index");
+	}
+
+	function _log_saving($action_taken,$settings){
+		$data = [
+			"action_taken" => $action_taken,
+			"categories" => [],
+			"remote_addr" => $this->request->getRemoteAddr(),
+			"remote_hostname" => $this->request->getRemoteHostname(),
+			"saved_at" => date("Y-m-d H:i:s"),
+		];
+		foreach(CookieConsentCategory::GetActiveInstances() as $ccc){
+			$code = $ccc->getCode();
+			$data["categories"][$code] = $settings->accepted($code);
+		}
+		$json = json_encode($data);
+		$this->logger->info("cookie_consent_saved: $json");
 	}
 }
