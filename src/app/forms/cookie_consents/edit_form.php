@@ -16,5 +16,7 @@ class EditForm extends ApplicationForm {
 				"help_text" => smarty_modifier_markdown($ccc->getDescription()),
 			]));
 		}
+
+		$this->set_hidden_field("dialog","1");
 	}
 }

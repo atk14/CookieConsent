@@ -12,7 +12,7 @@ class CookieConsentCategoriesController extends AdminController {
 
 	function edit(){
 		$this->_edit([
-			"label" => _(""),
+			"page_title" => _("Editace kategorie pro nastavení cookies"),
 		]);
 	}
 

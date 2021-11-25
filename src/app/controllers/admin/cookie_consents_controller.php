@@ -2,13 +2,13 @@
 class CookieConsentsController extends AdminController {
 
 	function index(){
-		$this->_redirect_to([
-			"action" => "edit",
-			"id" => 1
-		]);
+		$this->params["id"] = 1;
+		$this->_execute_action("edit");
 	}
 
 	function edit(){
-		$this->_edit();
+		$this->_edit([
+			"page_title" => _("Nastavení cookies")
+		]);
 	}
 }
