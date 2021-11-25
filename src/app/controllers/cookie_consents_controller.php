@@ -36,14 +36,19 @@ class CookieConsentsController extends ApplicationController {
 	}
 
 	function accept_all(){
-		$this->_accept_or_reject_all("acceptAll");
+		$this->_accept_or_reject_all("acceptAll",[
+			"flash_message" => _("Používání všech cookies bylo přijato"),
+		]);
 	}
 
 	function reject_all(){
 		$this->_accept_or_reject_all("rejectAll");
 	}
 
-	function _accept_or_reject_all($method){
+	function _accept_or_reject_all($method,$options = []){
+		$options += [
+			"flash_message" => _("Nastavení cookies bylo uloženo"),
+		];
 		if(!$this->request->post()){
 			$this->_redirect_to("edit");
 			return;
@@ -55,7 +60,7 @@ class CookieConsentsController extends ApplicationController {
 			$this->template_name = "close_dialog";
 			return;
 		}
-		$this->flash->success(_("Nastavení cookies bylo uloženo"));
+		$this->flash->success($options["flash_message"]);
 		$this->_redirect_to("main/index");
 	}
 }

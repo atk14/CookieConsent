@@ -7,9 +7,9 @@
 		<span class="button-container">
 			<button type="submit" class="btn btn-secondary">{t}Souhlasím s použitím vybraných cookies{/t}</button>
 			{if $request->xhr()}
-				{a_remote action="accept_all" _method=post _class="btn btn-primary"}{t}Souhlasím s použitím všech cookies{/t}{/a_remote}
+				{a_remote action="accept_all" dialog="1" _method=post _class="btn btn-primary"}{t}Souhlasím s použitím všech cookies{/t}{/a_remote}
 			{else}
-				{a action="accept_all" _method=post _class="btn btn-primary"}{t}Souhlasím s použitím všech cookies{/t}{/a}
+				{a action="accept_all" dialog="1" _method=post _class="btn btn-primary"}{t}Souhlasím s použitím všech cookies{/t}{/a}
 			{/if}
 		</span>
 	</div>
