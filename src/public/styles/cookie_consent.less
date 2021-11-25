@@ -162,13 +162,35 @@
 // properties for both cookie banner and modal
 .cookie_consent_banner_container, #form_cookie_consents_edit {
 	.btn-secondary {
-		.btn-default;
+		/*.btn-default;
 		background-color: @gray-light !important;
 		background-image: none;
 		color: white;
 		&:hover {
 			background-color: @gray !important;
+		}*/
+		background-color: transparent;
+		background-image: none;
+		border-color: @gray-light;
+		border-style: solid;
+		border-width: 1px;
+		color: @gray-light;
+		&:hover {
+			background-color: @gray-light;
+			color: white;
 		}
+	}
+	.btn-primary {
+		background-image: linear-gradient(to bottom, @btn-default-bg 0%, darken(@btn-default-bg,5%) 100%);
+		background-repeat: repeat-x;
+			&:hover, &:active, &.active {
+			background-color: darken(@btn-default-bg,5%);
+			background-image: none;
+		}
+		color: @btn-default-color;
+		border-color: @btn-default-bg;
+		border-style: solid;
+		border-width: 1px;
 	}
 }
 
