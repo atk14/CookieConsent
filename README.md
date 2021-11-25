@@ -53,7 +53,7 @@ Add shared template into layout (app/layouts/default.tpl). Somewhere close to th
 Add new section into your administration in app/controllers/admin/admin.php.
 
     ...
-    array(_("Cookie consent"),    "cookie_consent_categories"),
+    array(_("Cookie consent"),    "cookie_consents,cookie_consent_categories"),
     ...
 
 Include public/scripts/utils/cookie_consent.js in gulpfile.js into applicationScripts.

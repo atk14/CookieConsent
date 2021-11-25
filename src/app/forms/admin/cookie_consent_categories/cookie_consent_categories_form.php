@@ -24,6 +24,7 @@ class CookieConsentCategoriesForm extends AdminForm {
 
 		$this->add_field("active", new BooleanField([
 			"label" => _("Aktivní?"),
+			"initial" => true,
 			"required" => false,
 		]));
 
@@ -51,7 +52,8 @@ class CookieConsentCategoriesForm extends AdminForm {
 
 		$this->add_translatable_field("description", new MarkdownField([
 			"label" => _("Popis"),
-			"help_text" => _("Formátování Markdown")
+			"help_text" => _("Formátování Markdown"),
+			"required" => false,
 		]));
 	}
 }

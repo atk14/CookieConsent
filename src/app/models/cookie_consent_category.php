@@ -1,6 +1,14 @@
 <?php
 class CookieConsentCategory extends ApplicationModel implements Rankable, Translatable {
 
+	static function CreateNewRecord($values,$options = []){
+		$values += [
+			"cookie_consent_id" => CookieConsent::GetInstance(),
+		];
+
+		return parent::CreateNewRecord($values,$options);
+	}
+
 	static function GetTranslatableFields(){ return ["title", "description"]; }
 
 	static function GetAllInstances(){

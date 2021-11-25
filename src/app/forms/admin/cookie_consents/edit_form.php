@@ -9,6 +9,7 @@ class EditForm extends AdminForm {
 
 		$this->add_translatable_field("banner_text", new MarkdownField([
 			"label" => _("Text cookie lišty"),
+			"help_text" => _("Formátování Markdown"),
 		]));
 
 		$this->add_translatable_field("dialog_title", new CharField([
@@ -17,10 +18,12 @@ class EditForm extends AdminForm {
 
 		$this->add_translatable_field("dialog_header_text", new MarkdownField([
 			"label" => _("Úvodní text dialogu"),
+			"help_text" => _("Formátování Markdown"),
 		]));
 
 		$this->add_translatable_field("dialog_footer_text", new MarkdownField([
 			"label" => _("Text v patičce dialogu"),
+			"help_text" => _("Formátování Markdown"),
 		]));
 	}
 }

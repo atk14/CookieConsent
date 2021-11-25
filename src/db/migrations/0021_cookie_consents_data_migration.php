@@ -4,6 +4,15 @@
 class CookieConsentsDataMigration extends ApplicationMigration {
 
 	function up(){
+		Atk14Require::Helper("modifier.link_to_page");
+		$lang = "en";
+		$orig_lang = Atk14Locale::Initialize($lang);
+		$url_en = smarty_modifier_link_to_page("privacy_policy");
+		$lang = "cs";
+		Atk14Locale::Initialize($lang);
+		$url_cs = smarty_modifier_link_to_page("privacy_policy");
+		Atk14Locale::Initialize($orig_lang);
+
 		$cookie_consent = CookieConsent::CreateNewRecord([
 			"id" => 1,
 			//
@@ -16,8 +25,8 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"dialog_title_cs" => 'Nastavení cookies',
 			"dialog_header_text_en" => 'Here you have the option to adjust the use of cookies based on your own preferences.',
 			"dialog_header_text_cs" => "Zde máte možnost upravit si používání cookies na základě vlastních preferencí.",
-			"dialog_footer_text_en" => 'For more information about cookies, see <a href="#">Privacy Policy</a>.',
-			"dialog_footer_text_cs" => 'Více o cookies najdete v <a href="#">Zásadách ochrany osobních údajů</a>.',
+			"dialog_footer_text_en" => "For more information about cookies, see [Privacy Policy]($url_en).",
+			"dialog_footer_text_cs" => "Více o cookies najdete v [Zásadách ochrany osobních údajů]($url_cs).",
 		]);
 
 		// there is a fixture for testing
