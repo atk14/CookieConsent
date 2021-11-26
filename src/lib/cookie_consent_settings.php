@@ -265,7 +265,7 @@ class CookieConsentSettings {
 	function toArray(){
 		$out = $this->settings;
 		$out["cookie"]["timestamp"] = $this->_timestampToDatetime($out["cookie"]["timestamp"]);
-		$out["all"]["timestamp"] = $this->_timestampToDatetime($out["cookie"]["all"]);
+		$out["all"]["timestamp"] = $this->_timestampToDatetime($out["all"]["timestamp"]);
 		foreach($out["categories"] as $code => $item){
 			$out["categories"][$code]["timestamp"] = $this->_timestampToDatetime($out["categories"][$code]["timestamp"]);
 		}
