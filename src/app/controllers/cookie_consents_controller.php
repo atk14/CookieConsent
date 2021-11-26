@@ -74,15 +74,11 @@ class CookieConsentsController extends ApplicationController {
 	function _log_saving($action_taken,$settings){
 		$data = [
 			"action_taken" => $action_taken,
-			"categories" => [],
+			"action_taken_at" => date("Y-m-d H:i:s"),
 			"remote_addr" => $this->request->getRemoteAddr(),
 			"remote_hostname" => $this->request->getRemoteHostname(),
-			"saved_at" => date("Y-m-d H:i:s"),
+			"settings" => $settings->toArray(),
 		];
-		foreach(CookieConsentCategory::GetActiveInstances() as $ccc){
-			$code = $ccc->getCode();
-			$data["categories"][$code] = $settings->accepted($code);
-		}
 		$json = json_encode($data);
 		$this->logger->info("cookie_consent_saved: $json");
 	}
