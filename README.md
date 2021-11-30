@@ -12,8 +12,10 @@ Installation
     ln -s ../../../vendor/atk14/cookie-consent/src/app/controllers/admin/cookie_consents_controller.php app/controllers/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/forms/admin/cookie_consents app/forms/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consents app/views/admin/
+    ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consents app/views/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/controllers/admin/cookie_consent_categories_controller.php app/controllers/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/forms/admin/cookie_consent_categories app/forms/admin/
+    ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consent_categories app/views/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consent_categories app/views/admin/
     ln -s ../../vendor/atk14/cookie-consent/src/app/controllers/cookie_consents_controller.php app/controllers/
     ln -s ../../vendor/atk14/cookie-consent/src/app/forms/cookie_consents app/forms/
@@ -21,6 +23,7 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/app/models/cookie_consent.php app/models/
     ln -s ../../vendor/atk14/cookie-consent/src/app/models/cookie_consent_category.php app/models/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/shared/cookie_consent app/views/shared
+    ln -s ../../vendor/atk14/cookie-consent/src/app/helpers/function.cookie_consent_datalayer_command.php app/helpers/
     ln -s ../../vendor/atk14/cookie-consent/src/test/models/tc_cookie_consent.php test/models/
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
     ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
@@ -80,6 +83,12 @@ Checking whether a category of the cookie consent is accepted or not in Javascri
     if(CookieConsent::Accepted("advertising")){
       // accepted
     }
+
+#### Google Tag Manager
+
+If you are using Google, place helper {cookie_consent_datalayer_command} into your layout just after your GTM initialization script.
+This will create a push command with granted consent groups.
+
 
 Requirements
 ------------
