@@ -17,9 +17,9 @@ function smarty_function_cookie_consent_datalayer_command($params, $template) {
 
 	$out = [
 		"window.dataLayer = window.dataLayer || []",
-		"function gtag(){dataLayer.push(arguments);}",
+#		"function gtag(){dataLayer.push(arguments);}",
 	];
-	$out[] = sprintf('dataLayer.push( %s)', json_encode(["grantedConsents" => $granted]));
+	$out[] = sprintf('dataLayer.push( %s)', json_encode(["event" => "consentUpdate", "grantedConsents" => $granted]));
 
 	Atk14Require::Helper("function.javascript_tag");
 
