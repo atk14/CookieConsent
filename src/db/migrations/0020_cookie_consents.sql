@@ -1,6 +1,6 @@
 -- migration from package atk14/cookie-consent
 
-CREATE TABLE cookie_consents (
+CREATE TABLE IF NOT EXISTS cookie_consents (
 	id INT PRIMARY KEY,
 	--
 	created_by_user_id INT,
@@ -14,8 +14,8 @@ CREATE TABLE cookie_consents (
 	CONSTRAINT fk_cookieconsents_upd_users FOREIGN KEY (updated_by_user_id) REFERENCES users
 );
 
-CREATE SEQUENCE seq_cookie_consent_categories START WITH 11;
-CREATE TABLE cookie_consent_categories (
+CREATE SEQUENCE IF NOT EXISTS seq_cookie_consent_categories START WITH 11;
+CREATE TABLE IF NOT EXISTS cookie_consent_categories (
 	id INT PRIMARY KEY DEFAULT NEXTVAL('seq_cookie_consent_categories'),
 	--
 	cookie_consent_id INT NOT NULL,

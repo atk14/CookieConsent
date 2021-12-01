@@ -13,7 +13,7 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 		$url_cs = smarty_modifier_link_to_page("privacy_policy");
 		Atk14Locale::Initialize($orig_lang);
 
-		$cookie_consent = CookieConsent::CreateNewRecord([
+		CookieConsent::FindById(1) || ( $cookie_consent = CookieConsent::CreateNewRecord([
 			"id" => 1,
 			//
 			"banner_title_en" => 'Cookies',
@@ -27,12 +27,12 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"dialog_header_text_cs" => "Zde máte možnost upravit si používání cookies na základě vlastních preferencí.",
 			"dialog_footer_text_en" => "For more information about cookies, see [Privacy Policy]($url_en).",
 			"dialog_footer_text_cs" => "Více o cookies najdete v [Zásadách ochrany osobních údajů]($url_cs).",
-		]);
+		]) );
 
 		// there is a fixture for testing
 		if(TEST){ return; }
 
-		CookieConsentCategory::CreateNewRecord([
+		CookieConsentCategory::FindFirst("code", "necessary") || ( CookieConsentCategory::CreateNewRecord([
 			"id" => 1,
 			"cookie_consent_id" => 1,
 			"code" => "necessary",
@@ -42,9 +42,9 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"title_cs" => "Technické cookies",
 			"description_cs" => "Technické cookies jsou nezbytné pro správné fungování webu a všech funkcí, které nabízí. Jsou odpovědné mj. za uchovávání produktů v košíku, zobrazování seznamu oblíbených výrobků nebo nákupní proces. Používání technických cookies nemůže být zakázáno.",
 			"description_en" => "Technical cookies are necessary for the proper functioning of the website and all the functions it offers. They are responsible for, among other things, storing products in the basket, displaying a list of favourites or the shopping process. The use of technical cookies cannot be prohibited.",
-		]);
+		]) );
 
-		CookieConsentCategory::CreateNewRecord([
+		CookieConsentCategory::FindFirst("code", "analytics") || ( CookieConsentCategory::CreateNewRecord([
 			"id" => 2,
 			"cookie_consent_id" => 1,
 			"code" => "analytics",
@@ -55,9 +55,9 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"title_cs" => "Analytické cookies",
 			"description_en" => "Analytical cookies allow us to measure the performance of our website and the effects of the adjustments we make to the website on an ongoing basis. We process the data obtained through these cookies in aggregate, without using identifiers that point to specific users of our website. If you disable the use of analytics cookies in relation to your visit, we lose the ability to analyse performance and optimise our measures.",
 			"description_cs" => "Analytické cookies nám umožňují měření výkonu našeho webu a účinků úprav, které průběžně na web nasazujeme. Data získaná pomocí těchto cookies zpracováváme souhrnně, bez použití identifikátorů, které ukazují na konkrétní uživatelé našeho webu. Pokud vypnete používání analytických cookies ve vztahu k vaší návštěvě, ztrácíme možnost analýzy výkonu a optimalizace našich opatření.",
-		]);
+		]) );
 
-		CookieConsentCategory::CreateNewRecord([
+		CookieConsentCategory::FindFirst("code", "advertising") || ( CookieConsentCategory::CreateNewRecord([
 			"id" => 3,
 			"cookie_consent_id" => 1,
 			"code" => "advertising",
@@ -68,6 +68,6 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"title_en" => "Marketing & Advertising",
 			"description_en" => "Advertising cookies allow us to show you relevant content or ads tailored to your interests both on our site and on third party sites.",
 			"description_cs" => "Reklamní cookies nám umožňují zobrazovat vám vhodný obsah nebo reklamy přizpůsobené vašim zájmům jak na našich stránkách, tak na stránkách třetích subjektů.",
-		]);
+		]) );
 	}
 }
