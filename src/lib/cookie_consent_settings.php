@@ -287,12 +287,22 @@ class CookieConsentSettings {
 
 	function _clearCookie($response,$cookie_name){
 		$domain = $this->request->getHttpHost();
+		$domains = [];
+		$domains[] = $domain;
+		if(preg_match('/[a-z]/',$domain)){ // if not an IP address...
+			$_domain = preg_replace('/^[^.]+\./','.',$_domain);
+			if(preg_match('/\..*\./',$_domain)){ // at least two dots
+				$domains[] = $_domain;
+			}
+		}
 		$expire = $this->_time() - 60 * 60 * 24 * 365 * 2;
-		$response->addCookie("$cookie_name","",[
-			"expire" => $expire,
-			"path" => "/",
-			"domain" => $domain,
-			"httponly" => false,
-		]);
+		foreach($domains as $d){
+			$response->addCookie("$cookie_name","",[
+				"expire" => $expire,
+				"path" => "/",
+				"domain" => $d,
+				"httponly" => false,
+			]);
+		}
 	}
 }
