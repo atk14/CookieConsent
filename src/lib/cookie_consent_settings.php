@@ -214,7 +214,7 @@ class CookieConsentSettings {
 			if(!$this->accepted($ccc) && $ccc->getCookiesRegexp()){
 				foreach($this->request->getCookieVars() as $k => $v){
 					if(preg_match($ccc->getCookiesRegexp(),$k)){
-						$this->_clearCookie($response,$k);
+						$this->_deleteCookie($response,$k);
 					}
 				}
 			}
@@ -291,17 +291,23 @@ class CookieConsentSettings {
 		return $this->current_time ? $this->current_time : time();
 	}
 
-	function _clearCookie($response,$cookie_name){
-		$domain = $this->request->getHttpHost();
-		$domain = $this->_prepareDomainForCookie($domain);
+	function _deleteCookie($response,$cookie_name){
+		$http_host = $this->request->getHttpHost();
+		$domain = $this->_prepareDomainForCookie($http_host);
+		$domains = [$domain];
+		if(preg_match('/[a-z]/',$http_host) && ".$http_host"!==$domain){ // not ip address
+			$domains[] = ".$http_host";
+		}
 
-		$expire = $this->_time() - 60 * 60 * 24 * 365 * 2;
-		$response->addCookie("$cookie_name","",[
-			"expire" => $expire,
-			"path" => "/",
-			"domain" => $domain,
-			"httponly" => false,
-		]);
+		foreach($domains as $d){
+			$expire = $this->_time() - 60 * 60 * 24 * 365 * 2;
+			$response->addCookie("$cookie_name","",[
+				"expire" => $expire,
+				"path" => "/",
+				"domain" => $d,
+				"httponly" => false,
+			]);
+		}
 	}
 
 	function _prepareDomainForCookie($domain){
