@@ -219,4 +219,20 @@ class TcCookieConsent extends TcBase {
 		$this->assertNull($settings->_cleanCookieValues(["v" => "99999"],["v"]),"version to high");
 		$this->assertNull($settings->_cleanCookieValues(["v" => ""],["v"],true),"required");
 	}
+
+	function test__prepareDomainForCookie(){
+		$request = new HTTPRequest();
+		$settings = CookieConsent::GetSettings($request);
+
+		$this->assertEquals("127.0.0.1",$settings->_prepareDomainForCookie("127.0.0.1"));
+		$this->assertEquals("2001:4860:4860::8888",$settings->_prepareDomainForCookie("2001:4860:4860::8888"));
+
+		$this->assertEquals(".example.com",$settings->_prepareDomainForCookie("www.example.com"));
+		$this->assertEquals(".example.com",$settings->_prepareDomainForCookie("example.com"));
+		$this->assertEquals(".app.localhost",$settings->_prepareDomainForCookie("app.localhost"));
+		$this->assertEquals(".localhost",$settings->_prepareDomainForCookie("localhost"));
+
+		$this->assertEquals(".example.co.uk",$settings->_prepareDomainForCookie("example.co.uk"));
+		$this->assertEquals(".example.co.uk",$settings->_prepareDomainForCookie("www.example.co.uk"));
+	}
 }

@@ -201,6 +201,8 @@ class CookieConsentSettings {
 		$response->addCookie(COOKIE_CONSENT_SETTINGS_COOKIE_NAME,$cookie_value,[
 			"expire" => $this->_time() + 60 * 60 * 24 * 365 * 2,
 			"secure" => false,
+			"path" => "/",
+			"domain" => $this->_prepareDomainForCookie($this->request->getHttpHost()),
 			"httponly" => false,
 		]);
 
@@ -287,12 +289,7 @@ class CookieConsentSettings {
 
 	function _clearCookie($response,$cookie_name){
 		$domain = $this->request->getHttpHost();
-		if(preg_match('/[a-z]/',$domain)){ // if not an IP address...
-			$_domain = preg_replace('/^[^.]+\./','.',$domain);
-			if(preg_match('/\.[^.]+\./',$_domain)){ // at least two dots
-				$domain = $_domain;
-			}
-		}
+		$domain = $this->_prepareDomainForCookie($domain);
 
 		$expire = $this->_time() - 60 * 60 * 24 * 365 * 2;
 		$response->addCookie("$cookie_name","",[
@@ -301,5 +298,17 @@ class CookieConsentSettings {
 			"domain" => $domain,
 			"httponly" => false,
 		]);
+	}
+
+	function _prepareDomainForCookie($domain){
+		if(preg_match('/[a-z]/',$domain)){ // if not an IP address...
+			$_domain = preg_replace('/^[^.]+\./','.',$domain);
+			if(preg_match('/\.[^.]+\./',$_domain) && !in_array($_domain,[".co.uk"])){ // at least two dots
+				$domain = $_domain;
+			}else{
+				$domain = ".$domain"; // "example.com" -> ".example.com"
+			}
+		}
+		return $domain;
 	}
 }
