@@ -31,9 +31,16 @@ class CookieConsentsController extends ApplicationController {
 
 			if(!$this->request->xhr()){
 				$this->flash->success(_("Nastavení cookies bylo uloženo"));
-				$this->_redirect_to("main/index");
+				$this->_redirect_to("delete_rejected_cookies");
 			}
 		}
+	}
+
+	function delete_rejected_cookies(){
+		$settings = CookieConsent::GetSettings($this->request);
+		$settings->deleteRejectedCookies($this->response);
+
+		$this->_redirect_to("main/index");
 	}
 
 	function accept_all(){

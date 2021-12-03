@@ -206,6 +206,10 @@ class CookieConsentSettings {
 			"httponly" => false,
 		]);
 
+		$this->deleteRejectedCookies($response);
+	}
+
+	function deleteRejectedCookies($response){
 		foreach(CookieConsentCategory::GetActiveInstances() as $ccc){
 			if(!$this->accepted($ccc) && $ccc->getCookiesRegexp()){
 				foreach($this->request->getCookieVars() as $k => $v){
