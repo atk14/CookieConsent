@@ -33,6 +33,7 @@ class CookieConsentSettings {
 				"accepted" => null, // true, false, null
 				"timestamp" => null,
 			],
+			"saved_on_http_host" => null,
 			"categories" => $categories,
 		];
 
@@ -47,6 +48,9 @@ class CookieConsentSettings {
 			list($all_a,$all_t) = $ar;
 			$settings["all"]["accepted"] = $all_a;
 			$settings["all"]["timestamp"] = $all_t;
+		}
+		if(isset($cookie_data["h"]) && is_string($cookie_data["h"]) && strlen($cookie_data["h"])<=253){
+			$settings["saved_on_http_host"] = (string)$cookie_data["h"];
 		}
 		if(isset($cookie_data["cs"]) && is_array($cookie_data["cs"])){
 			foreach($cookie_data["cs"] as $code => $data){
@@ -253,6 +257,7 @@ class CookieConsentSettings {
 			"c_t" => (string)$this->_time(),
 			"all_a" => $this->_formatA($this->settings["all"]["accepted"]),
 			"all_t" => (string)$this->settings["all"]["timestamp"],
+			"h" => $this->request->getHttpHost(),
 			"cs" => $cs,
 		];
 
