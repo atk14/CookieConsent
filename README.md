@@ -12,10 +12,8 @@ Installation
     ln -s ../../../vendor/atk14/cookie-consent/src/app/controllers/admin/cookie_consents_controller.php app/controllers/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/forms/admin/cookie_consents app/forms/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consents app/views/admin/
-    ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consents app/views/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/controllers/admin/cookie_consent_categories_controller.php app/controllers/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/forms/admin/cookie_consent_categories app/forms/admin/
-    ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consent_categories app/views/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consent_categories app/views/admin/
     ln -s ../../vendor/atk14/cookie-consent/src/app/controllers/cookie_consents_controller.php app/controllers/
     ln -s ../../vendor/atk14/cookie-consent/src/app/forms/cookie_consents app/forms/
