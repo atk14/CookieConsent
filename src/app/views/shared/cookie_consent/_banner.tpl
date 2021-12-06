@@ -11,7 +11,7 @@
 					{!$consent->getBannerText()|markdown}
 					
 					<p>
-						{a_remote namespace="" controller="cookie_consents" action="edit" _class="btn btn-secondary"}{t}Nastavení{/t}{/a_remote}
+						{a_remote namespace="" controller="cookie_consents" action="edit" _class="btn btn-outline-secondary"}{t}Nastavení{/t}{/a_remote}
 						{a_remote namespace="" controller="cookie_consents" action="accept_all" _class="btn btn-primary" _method=post}{t}Ok{/t}{/a_remote}
 					</p>
 
