@@ -199,6 +199,7 @@ class CookieConsentSettings {
 
 	function saveSettings($response){
 		$this->settings["_save_"] = $this->_time();
+		$this->settings["saved_on_http_host"] = $this->request->getHttpHost();
 		$cookie_value = $this->compileCookieData();
 		$cookie_value = json_encode($cookie_value);
 		$cookie_value = base64_encode($cookie_value);
