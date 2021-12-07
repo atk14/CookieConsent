@@ -15,6 +15,9 @@ Installation
     ln -s ../../../vendor/atk14/cookie-consent/src/app/controllers/admin/cookie_consent_categories_controller.php app/controllers/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/forms/admin/cookie_consent_categories app/forms/admin/
     ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consent_categories app/views/admin/
+    ln -s ../../../vendor/atk14/cookie-consent/src/app/controllers/admin/cookie_consent_statistics_controller.php app/controllers/admin/
+    ln -s ../../../vendor/atk14/cookie-consent/src/app/forms/admin/cookie_consent_statistics app/forms/admin/
+    ln -s ../../../vendor/atk14/cookie-consent/src/app/views/admin/cookie_consent_statistics app/views/admin/
     ln -s ../../vendor/atk14/cookie-consent/src/app/controllers/cookie_consents_controller.php app/controllers/
     ln -s ../../vendor/atk14/cookie-consent/src/app/forms/cookie_consents app/forms/
     ln -s ../../vendor/atk14/cookie-consent/src/app/views/cookie_consents app/views/
@@ -55,7 +58,7 @@ Add shared template into layout (app/layouts/default.tpl). Somewhere close to th
 Add new section into your administration in app/controllers/admin/admin.php.
 
     ...
-    array(_("Cookie consent"),    "cookie_consents,cookie_consent_categories"),
+    array(_("Cookie consent"),    "cookie_consents,cookie_consent_categories,cookie_consent_statistics"),
     ...
 
 Include public/scripts/utils/cookie_consent.js in gulpfile.js into applicationScripts.
