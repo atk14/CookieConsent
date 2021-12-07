@@ -1,0 +1,66 @@
+#!/usr/bin/env php
+<?php
+/**
+ *
+ *  ./local_scripts/export_cookie_consent_statistics > ~/export.csv
+ */
+
+require(__DIR__ . "/../atk14/load.php");
+
+$LOG_DIR = LOG_DIR;
+
+$EXPORT = [];
+
+for($i=0;$i<10;$i++){
+	$log_file = $i === 0 ? "$LOG_DIR/application.log" : "$LOG_DIR/application.log.$i";
+	$grep = "grep";
+	if(file_exists("$log_file.gz")){
+		$log_file = "$log_file.gz";
+		$grep = "zgrep";
+	}
+	if(!file_exists($log_file)){ continue; }
+	
+	$cmd = "$grep 'cookie_consent_saved: ' ".escapeshellarg($log_file)."";
+
+	$log = `$cmd`;
+
+	$_EXPORT = [];
+	foreach(explode("\n",$log) as $line){
+		$line = trim($line);
+		if(!$line){ continue; }
+		if(!preg_match('/^(?<datetime>(?<date>\d{4}-\d{2}-\d{2}) \d{2}:\d{2}:\d{2}).*? cookie_consent_saved: (?<json>.*)/',$line,$matches)){
+			// wtf?
+			continue;
+		}
+
+		$date = $matches["date"];
+		$datetime = $matches["datetime"];
+
+		$json = json_decode($matches["json"],true);
+
+		$export = [
+			"datetime" => $datetime,
+			"action_taken" => $json["action_taken"],
+		];
+		foreach($json["settings"]["categories"] as $category => $category_ar){
+			$accepted = $category_ar["accepted"];
+			$export[$category] = is_null($accepted) ? "null" : ($accepted ? "true" : "false");
+		}
+
+		$export["server_http_host"] = $json["settings"]["saved_on_http_host"];
+		$export["remote_addr"] = $json["remote_addr"];
+		$export["remote_hostname"] = $json["remote_hostname"];
+
+		$_EXPORT[] = $export;
+	}
+	$_EXPORT = array_reverse($_EXPORT);
+
+	$EXPORT = array_merge($EXPORT,$_EXPORT);
+}
+
+$csv = new CsvWriter();
+foreach($EXPORT as $export){
+	$csv[] = $export;
+}
+
+echo $csv->writeToString(["with_header" => true]);

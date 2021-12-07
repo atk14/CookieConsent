@@ -25,6 +25,7 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/test/models/tc_cookie_consent.php test/models/
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
     ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
+    ln -s ../vendor/atk14/cookie-consent/src/local_scripts/export_cookie_consent_statistics local_scripts/
 
 Symlink or copy migration files into your project and perform the migration script:
 
