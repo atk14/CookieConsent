@@ -5,7 +5,7 @@
  *  ./local_scripts/export_cookie_consent_statistics > ~/export.csv
  */
 
-require(__DIR__ . "/../atk14/load.php");
+require(__DIR__ . "/../../../../../atk14/load.php"); // Phew! :)
 
 $LOG_DIR = LOG_DIR;
 
