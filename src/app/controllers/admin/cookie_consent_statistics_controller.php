@@ -3,6 +3,7 @@ class CookieConsentStatisticsController extends AdminController {
 
 	function index(){
 		$this->page_title = _("Statistika klikání na souhlas s použitím cookies");
+		$this->breadcrumbs[] = _("Statistika klikání");
 
 		if($this->params->getString("format")==="csv"){
 			$cmd = "php ".ATK14_DOCUMENT_ROOT."/local_scripts/export_cookie_consent_statistics";
