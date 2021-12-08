@@ -67,9 +67,11 @@ class CookieConsentsController extends ApplicationController {
 			return;
 		}
 		$settings = CookieConsent::GetSettings($this->request);
-		$settings->$method();
-		$settings->saveSettings($this->response);
-		$this->_log_saving($options["action_taken"],$settings);
+		if(($method==="acceptAll" && !$settings->acceptedAll()) || ($method==="rejectAll" && !$settings->rejectedAll())){
+			$settings->$method();
+			$settings->saveSettings($this->response);
+			$this->_log_saving($options["action_taken"],$settings);
+		}
 		if($this->request->xhr()){
 			$this->template_name = "close_dialog";
 			return;
@@ -84,6 +86,7 @@ class CookieConsentsController extends ApplicationController {
 			"action_taken_at" => date("Y-m-d H:i:s"),
 			"remote_addr" => $this->request->getRemoteAddr(),
 			"remote_hostname" => $this->request->getRemoteHostname(),
+			"user_agent" => $this->request->getHeader("User-Agent"),
 			"settings" => $settings->toArray(),
 		];
 		$json = json_encode($data);

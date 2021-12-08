@@ -37,6 +37,9 @@ for($i=0;$i<10;$i++){
 		$datetime = $matches["datetime"];
 
 		$json = json_decode($matches["json"],true);
+		$json += [
+			"user_agent" => "",
+		];
 
 		$export = [
 			"datetime" => $datetime,
@@ -50,6 +53,7 @@ for($i=0;$i<10;$i++){
 		$export["server_http_host"] = $json["settings"]["saved_on_http_host"];
 		$export["remote_addr"] = $json["remote_addr"];
 		$export["remote_hostname"] = $json["remote_hostname"];
+		$export["user_agent"] = $json["user_agent"];
 
 		$_EXPORT[] = $export;
 	}
