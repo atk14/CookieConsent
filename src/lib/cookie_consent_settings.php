@@ -197,7 +197,10 @@ class CookieConsentSettings {
 		return !$this->settings["all"]["accepted"]; 
 	}
 
-	function saveSettings($response){
+	function saveSettings($response,$options = []){
+		$options += [
+			"delete_rejected_cookies" => true,
+		];
 		$this->settings["_save_"] = $this->_time();
 		$this->settings["saved_on_http_host"] = $this->request->getHttpHost();
 		$cookie_value = $this->compileCookieData();
@@ -211,7 +214,9 @@ class CookieConsentSettings {
 			"httponly" => false,
 		]);
 
-		$this->deleteRejectedCookies($response);
+		if($options["delete_rejected_cookies"]){
+			$this->deleteRejectedCookies($response);
+		}
 	}
 
 	function deleteRejectedCookies($response){
