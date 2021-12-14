@@ -6,7 +6,10 @@
 		<div>
 		<!--googleoff: all-->
 			<div class="container-fluid">
-					<h3>{!"cookie-bite"|icon} {$consent->getBannerTitle()}</h3>
+					<h3>
+						{if defined("USING_FONTAWESOME") && constant("USING_FONTAWESOME")}<span class="fas fa-cookie-bite"></span>{/if}
+						{$consent->getBannerTitle()}
+					</h3>
 
 					{!$consent->getBannerText()|markdown}
 					
