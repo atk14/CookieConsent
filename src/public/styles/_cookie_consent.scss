@@ -1,11 +1,11 @@
 // We need to have the cookie consent banner under a modal dialog
 
 // Configuration dafaults. May be overrided before processing this file in places like _application_variables.scss
-$cookieConsentBaseZIndex: $zindex-fixed !default;
-$cookieConsentBgColor: white !default;
-$cookieConsentBackdropColor: black !default;
-$cookieConsentBackdropAlpha: 0.5 !default;
-$cookieConsentPointerEvents: none !default;
+$cookieConsentBaseZIndex: $zindex-fixed !default; // Base z-index. Do not change unless absolutely necessary
+$cookieConsentBgColor: white !default;					// Banner bg color
+$cookieConsentBackdropColor: black !default;		// Backdrop bg coloir
+$cookieConsentBackdropAlpha: 0.5 !default;				// Backdrop alpha (0-1)
+$cookieConsentPointerEvents: none !default;				// Does backdrop block mouse (none = blocking)
 
 .cookie_consent_banner_container{
 	> div {
