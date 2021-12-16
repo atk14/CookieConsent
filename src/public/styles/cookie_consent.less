@@ -1,7 +1,10 @@
 // We need to have the cookie consent banner under a modal dialog
+
+@cookieConsentBaseZIndex: 990; // must be lower than modal z-index
+
 .cookie_consent_banner_container {
   >div {
-		z-index: 990; // must be lower than modal z-index
+		z-index: @cookieConsentBaseZIndex; // must be lower than modal z-index
 		position: fixed;
 		bottom: 0;
 		left: 0;
@@ -40,7 +43,7 @@
 		top: 0;
 		bottom: 0;
 		background-color: fade(black, 15%);
-		z-index: 980;
+		z-index: @cookieConsentBaseZIndex - 10;
 		pointer-events: none;
 	}
 }
@@ -221,4 +224,9 @@
 
 .cookies-form-container {
 	.container;
+}
+
+// chat schovat pod cookie listu 
+iframe#supportBox-iframe {
+	z-index: @cookieConsentBaseZIndex - 12 !important;
 }
