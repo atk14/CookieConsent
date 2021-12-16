@@ -5,7 +5,7 @@ $cookieConsentBaseZIndex: $zindex-fixed !default; // Base z-index. Do not change
 $cookieConsentBgColor: white !default;					// Banner bg color
 $cookieConsentBackdropColor: black !default;		// Backdrop bg coloir
 $cookieConsentBackdropAlpha: 0.5 !default;				// Backdrop alpha (0-1)
-$cookieConsentPointerEvents: none !default;				// Does backdrop block mouse (none = blocking)
+$cookieConsentPointerEvents: none !default;				// Does backdrop block mouse (none = content behind backdrop is clickable)
 
 .cookie_consent_banner_container{
 	> div {
