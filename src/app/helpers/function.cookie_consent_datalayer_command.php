@@ -11,7 +11,7 @@ function smarty_function_cookie_consent_datalayer_command($params, $template) {
 
 	if($settings->needsToBeConfirmed()){
 		$out[] = 'document.addEventListener( "consentupdate", function( ev ){';
-		$out[] = '  console.log( ev.grantedConsents );';
+		//$out[] = '  console.log( ev.grantedConsents );';
 		$out[] = '  window.dataLayer.push( { "event": "consentUpdate", "grantedConsents": ev.grantedConsents } );';
 		$out[] = '} );';
 	}
