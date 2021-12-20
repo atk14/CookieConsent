@@ -289,6 +289,44 @@ class CookieConsentSettings {
 		return $out;
 	}
 
+	/**
+	 *
+	 *	print_r($settings->getGtmGrantedConsents());
+	 *	// Array
+	 *	// (
+	 *	//     [functionality_storage] => granted
+	 *	// )
+	 *	//
+	 *	// or
+	 *	//
+	 *	// Array
+	 *	// (
+	 *	//     [functionality_storage] => granted,
+	 *	//     [analytics_storage] => granted
+	 *	// )
+	 *	//
+	 *	// etc.
+	 */
+	function getGtmGrantedConsents(){
+		$gtm_consent_equivalents = [
+			"advertising" => "ad_storage",
+			"analytics" => "analytics_storage",
+			"necessary" => "functionality_storage",
+			// "??" => "personalization_storage",
+			// "??" => "security_storage",
+		];
+
+		$granted = [];
+		foreach( CookieConsentCategory::GetAllInstances() as $cat ) {
+			$code = $cat->getCode();
+			if ( !isset($gtm_consent_equivalents[$code]) ){ continue; }
+			if ( $this->accepted($cat) ) {
+				$granted[$gtm_consent_equivalents[$code]] = "granted";
+			}
+		}
+		return $granted;
+	}
+
 	function _timestampToDatetime($timestamp){
 		return $timestamp ? date("Y-m-d H:i:s",$timestamp) : null;
 	}

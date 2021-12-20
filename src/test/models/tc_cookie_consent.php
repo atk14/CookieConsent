@@ -235,4 +235,20 @@ class TcCookieConsent extends TcBase {
 		$this->assertEquals(".example.co.uk",$settings->_prepareDomainForCookie("example.co.uk"));
 		$this->assertEquals(".example.co.uk",$settings->_prepareDomainForCookie("www.example.co.uk"));
 	}
+
+	function test_getGtmGrantedConsents(){
+		$request = new HTTPRequest();
+		$settings = CookieConsent::GetSettings($request);
+
+		$this->assertEquals([
+			"functionality_storage" => "granted",
+		],$settings->getGtmGrantedConsents());
+
+		$settings->acceptAll();
+		$this->assertEquals([
+			"functionality_storage" => "granted",
+			"analytics_storage" => "granted",
+			"ad_storage" => "granted",
+		],$settings->getGtmGrantedConsents());
+	}
 }
