@@ -14,7 +14,7 @@ class CookieConsentsController extends ApplicationController {
 		}
 
 		if($this->request->post() && ($d = $this->form->validate($this->params))){
-			$settings = CookieConsent::GetSettings($this->request);
+			$settings = $this->tpl_data["settings"] = CookieConsent::GetSettings($this->request);
 			$settings->clearAcceptAllStatus();
 			foreach($d as $k => $v){
 				$category_id = preg_replace('/^category_/','',$k);
@@ -73,6 +73,7 @@ class CookieConsentsController extends ApplicationController {
 			$this->_log_saving($options["action_taken"],$settings);
 		}
 		if($this->request->xhr()){
+			$this->tpl_data["settings"] = $settings;
 			$this->template_name = "close_dialog";
 			return;
 		}
