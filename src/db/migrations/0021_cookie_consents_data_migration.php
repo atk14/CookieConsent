@@ -18,8 +18,12 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			//
 			"banner_title_en" => 'Cookies',
 			"banner_title_cs" => 'Cookies',
-			"banner_text_en" => 'We use so-called cookies to operate our website. Cookies are files used to personalize the content of the website, to measure its functionality and to ensure your maximum satisfaction. You consent to the use of cookies by clicking on the "OK" button.',
-			"banner_text_cs" => 'K provozování našeho webu využíváme takzvané cookies. Cookies jsou soubory sloužící k přizpůsobení obsahu webu, k měření jeho funkčnosti a k zajištění vaší maximální spokojenosti. Souhlas s používáním cookies udělíte kliknutím na tlačítko „OK“.',
+			"banner_text_en" => 'We use so-called cookies to operate our website. Cookies are files used to personalize the content of the website, to measure its functionality and to ensure your maximum satisfaction.
+
+You consent to the use of cookies by clicking on the "OK" button.',
+			"banner_text_cs" => 'K provozování našeho webu využíváme takzvané cookies. Cookies jsou soubory sloužící k přizpůsobení obsahu webu, k měření jeho funkčnosti a k zajištění vaší maximální spokojenosti.
+
+Souhlas s používáním cookies udělíte kliknutím na tlačítko „OK“.',
 			//
 			"dialog_title_en" => 'Cookie Settings',
 			"dialog_title_cs" => 'Nastavení cookies',
@@ -40,8 +44,8 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"active" => true,
 			"title_en" => "Technical cookies",
 			"title_cs" => "Technické cookies",
-			"description_cs" => "Technické cookies jsou nezbytné pro správné fungování webu a všech funkcí, které nabízí. Jsou odpovědné mj. za uchovávání produktů v košíku, zobrazování seznamu oblíbených výrobků nebo nákupní proces. Používání technických cookies nemůže být zakázáno.",
 			"description_en" => "Technical cookies are necessary for the proper functioning of the website and all the functions it offers. They are responsible for, among other things, storing products in the basket, displaying a list of favourites or the shopping process. The use of technical cookies cannot be prohibited.",
+			"description_cs" => "Technické cookies jsou nezbytné pro správné fungování webu a všech funkcí, které nabízí. Jsou odpovědné mj. za uchovávání produktů v košíku, zobrazování seznamu oblíbených výrobků nebo nákupní proces. Používání technických cookies nemůže být zakázáno.",
 		]) );
 
 		CookieConsentCategory::FindFirst("code", "analytics") || ( CookieConsentCategory::CreateNewRecord([
@@ -64,8 +68,8 @@ class CookieConsentsDataMigration extends ApplicationMigration {
 			"active" => true,
 			"cookies_regexp" => "/^(_fb.*)$/",
 			"necessary" => false,
-			"title_cs" => "Reklamní cookies",
 			"title_en" => "Marketing & Advertising",
+			"title_cs" => "Reklamní cookies",
 			"description_en" => "Advertising cookies allow us to show you relevant content or ads tailored to your interests both on our site and on third party sites.",
 			"description_cs" => "Reklamní cookies nám umožňují zobrazovat vám vhodný obsah nebo reklamy přizpůsobené vašim zájmům jak na našich stránkách, tak na stránkách třetích subjektů.",
 		]) );
