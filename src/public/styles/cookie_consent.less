@@ -46,6 +46,10 @@
 		z-index: @cookieConsentBaseZIndex - 10;
 		pointer-events: none;
 	}
+
+	@media print {
+		display: none !important;
+	}
 }
 
 // properties for cookie modal

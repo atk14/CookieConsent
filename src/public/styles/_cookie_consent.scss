@@ -40,17 +40,21 @@ $cookieConsentPointerEvents: none !default;				// Does backdrop block mouse (non
 	}
 
 	&::before {
-			content: " ";
-			display: block;
-			position: fixed;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			background-color: rgba( $cookieConsentBackdropColor, $cookieConsentBackdropAlpha );
-			z-index: $cookieConsentBaseZIndex - 10;
-			pointer-events: $cookieConsentPointerEvents;
-		}
+		content: " ";
+		display: block;
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: rgba( $cookieConsentBackdropColor, $cookieConsentBackdropAlpha );
+		z-index: $cookieConsentBaseZIndex - 10;
+		pointer-events: $cookieConsentPointerEvents;
+	}
+	
+	@media print {
+		display: none !important;
+	}
 }
 
 #form_cookie_consents_edit {
