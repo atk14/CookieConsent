@@ -29,6 +29,7 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
     ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
     ln -s ../vendor/atk14/cookie-consent/src/local_scripts/export_cookie_consent_statistics local_scripts/
+    ln -s ../../vendor/atk14/cookie-consent/src/config/routers/cookie_consents_router.php config/routers/
 
 Symlink or copy migration files into your project and perform the migration script:
 
@@ -51,9 +52,20 @@ Linking a proper style form either for  or Bootstrap 4 (scss) or Bootstrap 3 (le
 
 Now include the selected style to your application style.
 
-Add shared template into layout (app/layouts/default.tpl). Somewhere close to the end of page.
+Add shared template into layout (app/layouts/default.tpl). Somewhere close to the end of the element <body>.
 
-    {render partial="shared/cookie_consent/banner"}
+    <body>
+      ...
+      {render partial="shared/cookie_consent/banner"}
+    </body>
+
+If you are using Google, place helper {cookie_consent_datalayer_command} into your layout just after your GTM initialization script.
+This will create a push command with granted consent groups.
+
+    <head>
+      {cookie_consent_datalayer_command}
+      ...
+    </head>
 
 Add new section into your administration in app/controllers/admin/admin.php.
 
@@ -68,6 +80,18 @@ Include public/scripts/utils/cookie_consent.js in gulpfile.js into applicationSc
       "public/scripts/utils/cookie_consent.js",
       "public/scripts/application.js"
     ];
+
+Include CookieConsentsRouter with some nice URIs.
+
+    <?php
+    // file: config/routers/load.php
+
+    ...
+
+    Atk14Url::AddRouter("CookieConsentsRouter");
+
+    // Keep the DefaultRouter at the end of the list
+    Atk14Url::AddRouter("DefaultRouter");
 
 Usage
 -----
@@ -85,12 +109,6 @@ Checking whether a category of the cookie consent is accepted or not in Javascri
     if(CookieConsent::Accepted("advertising")){
       // accepted
     }
-
-#### Google Tag Manager
-
-If you are using Google, place helper {cookie_consent_datalayer_command} into your layout just after your GTM initialization script.
-This will create a push command with granted consent groups.
-
 
 Requirements
 ------------
