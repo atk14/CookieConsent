@@ -36,6 +36,12 @@ class CookieConsentCategory extends ApplicationModel implements Rankable, Transl
 		}
 	}
 
+	function __construct(){
+		parent::__construct("cookie_consent_categories",[
+			"sequence_name" => "seq_cookie_consent_categories",
+		]);
+	}
+
 	function getCookieConsent(){
 		return Cache::Get("CookieConsent",$this->getCookieConsentId());
 	}

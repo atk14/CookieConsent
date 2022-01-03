@@ -23,4 +23,8 @@ class CookieConsent extends ApplicationModel implements Translatable {
 		$settings = self::GetSettings();
 		return $settings->accepted($cookie_consent_category);
 	}
+
+	function __construct(){
+		parent::__construct("cookie_consents");
+	}
 }
