@@ -27,6 +27,7 @@ Installation
     ln -s ../../vendor/atk14/cookie-consent/src/app/helpers/function.cookie_consent_datalayer_command.php app/helpers/
     ln -s ../../vendor/atk14/cookie-consent/src/test/models/tc_cookie_consent.php test/models/
     ln -s ../../vendor/atk14/cookie-consent/src/test/fixtures/cookie_consent_categories.yml test/fixtures/
+    mkdir -p public/scripts/utils
     ln -s ../../../vendor/atk14/cookie-consent/src/public/scripts/utils/cookie_consent.js public/scripts/utils
     ln -s ../vendor/atk14/cookie-consent/src/local_scripts/export_cookie_consent_statistics local_scripts/
     ln -s ../../vendor/atk14/cookie-consent/src/config/routers/cookie_consents_router.php config/routers/
@@ -70,7 +71,7 @@ This will create a push command with granted consent groups.
 Add new section into your administration in app/controllers/admin/admin.php.
 
     ...
-    array(_("Cookie consent"),    "cookie_consents,cookie_consent_categories,cookie_consent_statistics"),
+    [_("Cookie consent"),    "cookie_consents,cookie_consent_categories,cookie_consent_statistics"],
     ...
 
 Include public/scripts/utils/cookie_consent.js in gulpfile.js into applicationScripts.
