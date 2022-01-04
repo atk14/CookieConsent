@@ -212,6 +212,7 @@ class CookieConsentSettings {
 			"path" => "/",
 			"domain" => $this->_prepareDomainForCookie($this->request->getHttpHost()),
 			"httponly" => false,
+			"samesite" => "",
 		]);
 
 		if($options["delete_rejected_cookies"]){
