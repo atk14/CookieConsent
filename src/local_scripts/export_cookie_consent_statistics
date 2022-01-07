@@ -37,6 +37,7 @@ for($i=0;$i<10;$i++){
 		$datetime = $matches["datetime"];
 
 		$json = json_decode($matches["json"],true);
+		if(!$json){ continue; } // wtf?
 		$json += [
 			"user_agent" => "",
 		];
