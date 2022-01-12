@@ -30,12 +30,9 @@ $cookieConsentPointerEvents: none !default;				// Does backdrop block mouse (non
 			min-width: 120px;
 		}
 
-		p:last-child {
-			margin-bottom: 0;
-		}
-
 		.rejection-link {
 			font-size: $font-size-sm;
+			margin-bottom: 0;
 		}
 	}
 
