@@ -5,13 +5,22 @@
  *  ./local_scripts/export_cookie_consent_statistics > ~/export.csv
  */
 
+global $argv;
+
 require(__DIR__ . "/../../../../../atk14/load.php"); // Phew! :)
 
 $LOG_DIR = LOG_DIR;
 
 $EXPORT = [];
 
-for($i=0;$i<10;$i++){
+$DAYS = 10;
+
+array_shift($argv);
+
+if ($prm = array_shift($argv)) {
+	$DAYS = (int)$prm;
+}
+for($i=0;$i<$DAYS;$i++){
 	$log_file = $i === 0 ? "$LOG_DIR/application.log" : "$LOG_DIR/application.log.$i";
 	$grep = "grep";
 	if(file_exists("$log_file.gz")){
