@@ -16,7 +16,7 @@ function smarty_function_cookie_consent_datalayer_command($params, $template) {
 		$out[] = '} );';
 	}
 
-	Atk14Require::Helper("function.javascript_tag");
+	Atk14Require::Helper("block.javascript_tag");
 
 	return smarty_block_javascript_tag($params, join("\n", $out), $template, $false);
 
