@@ -1,7 +1,7 @@
 {assign consent CookieConsent::GetInstance()}
 {assign settings CookieConsent::GetSettings()}
 
-{if $settings->needsToBeConfirmed() && ($namespace!="" || $controller!="cookie_consents" || $action!="edit")}
+{if $settings->needsToBeConfirmed() && ($namespace!="" || $controller!="cookie_consents" || $action!="edit") && (!$page || !is_a($page,"TableRecord") || !$page->hasKey("code") || $page->getCode()!=="privacy_policy")}
 	<div class="cookie_consent_banner_container" id="js--cookie_consent_banner_container">
 		<div>
 		<!--googleoff: all-->
