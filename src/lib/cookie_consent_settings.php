@@ -175,7 +175,9 @@ class CookieConsentSettings {
 			$code = "$cookie_consent_category";
 			$cookie_consent_category = CookieConsentCategory::GetInstanceByCode($code);
 			if(!$cookie_consent_category){
-				trigger_error("there is no such CookieConsentCategory with code '$code'");
+				if(!defined("TEST") || !constant("TEST")){
+					trigger_error("there is no such CookieConsentCategory with code '$code'");
+				}
 				return false;
 			}
 		}
