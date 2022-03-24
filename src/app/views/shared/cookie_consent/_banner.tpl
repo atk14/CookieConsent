@@ -22,7 +22,7 @@
 
 					<p class="cookie_consent_banner__rejection-link rejection-link">
 						{capture assign=a}<a href="{link_to namespace="" controller="cookie_consents" action="reject_all"}" class="remote_link post" data-remote="true" data-method="post" rel="nofollow">{/capture}
-						{t 1=$a escape=false}Souhlas můžete odmítnout %1 zde{/t}</a>
+						{t 1=$a escape=false}Souhlas můžete odmítnout %1 zde </a>{/t}
 					</p>
 			</div>
 		<!--googleon: all-->
