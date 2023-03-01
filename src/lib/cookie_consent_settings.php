@@ -312,11 +312,13 @@ class CookieConsentSettings {
 	 */
 	function getGtmGrantedConsents(){
 		$gtm_consent_equivalents = [
+#			"necessary" => "necessary", # there is no equivalent category in GTM
+			# codes mapped to values known to GTMs' Consent Mode API
 			"advertising" => "ad_storage",
 			"analytics" => "analytics_storage",
-			"necessary" => "functionality_storage",
-			// "??" => "personalization_storage",
-			// "??" => "security_storage",
+			"functional" => "functionality_storage",
+			"personalization" => "personalization_storage",
+			"security" => "security_storage",
 		];
 
 		$granted = [];
