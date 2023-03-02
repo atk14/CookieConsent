@@ -22,6 +22,20 @@ advertising:
   cookies_regexp: "/^(_fb.*)$/"
   version: 3
 
+functional:
+  cookie_consent_id: 1
+  code: "functional"
+  title_en: "Functional cookies"
+  title_cs: "Funkční cookies"
+  version: 1
+
+personalization:
+  cookie_consent_id: 1
+  code: "personalization"
+  title_en: "Personalization cookies"
+  title_cs: "Personalizační cookies"
+  version: 1
+
 disabled:
   cookie_consent_id: 1
   code: "disabled"
