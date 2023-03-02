@@ -55,6 +55,8 @@ class TcCookieConsent extends TcBase {
 			"necessary" => ["a" => "", "t" => "", "v" => ""],
 			"analytics" => ["a" => "", "t" => "", "v" => ""],
 			"advertising" => ["a" => "", "t" => "", "v" => ""],
+			"functional" => ["a" => "", "t" => "", "v" => ""],
+			"personalization" => ["a" => "", "t" => "", "v" => ""],
 		],$data["cs"]);
 
 		//
@@ -70,6 +72,8 @@ class TcCookieConsent extends TcBase {
 			"necessary" => ["a" => "a", "t" => $time, "v" => "1"],
 			"analytics" => ["a" => "a", "t" => $time, "v" => "2"],
 			"advertising" => ["a" => "r", "t" => $time, "v" => "3"],
+			"functional" => ["a" => "", "t" => "", "v" => ""],
+			"personalization" => ["a" => "", "t" => "", "v" => ""],
 		],$data["cs"]);
 
 		//
@@ -83,6 +87,8 @@ class TcCookieConsent extends TcBase {
 			"necessary" => ["a" => "a", "t" => $time, "v" => "1"],
 			"analytics" => ["a" => "a", "t" => $time, "v" => "2"],
 			"advertising" => ["a" => "a", "t" => $time, "v" => "3"],
+			"functional" => ["a" => "a", "t" => $time, "v" => "1"],
+			"personalization" => ["a" => "a", "t" => $time, "v" => "1"],
 		],$data["cs"]);
 
 		//
@@ -96,6 +102,8 @@ class TcCookieConsent extends TcBase {
 			"necessary" => ["a" => "a", "t" => $time, "v" => "1"],
 			"analytics" => ["a" => "r", "t" => $time, "v" => "2"],
 			"advertising" => ["a" => "r", "t" => $time, "v" => "3"],
+			"functional" => ["a" => "r", "t" => $time, "v" => "1"],
+			"personalization" => ["a" => "r", "t" => $time, "v" => "1"],
 		],$data["cs"]);
 	}
 
@@ -248,6 +256,7 @@ class TcCookieConsent extends TcBase {
 			"functionality_storage" => "granted",
 			"analytics_storage" => "granted",
 			"ad_storage" => "granted",
+			"personalization_storage" => "granted",
 		],$settings->getGtmGrantedConsents());
 	}
 }
