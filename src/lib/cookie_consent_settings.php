@@ -319,6 +319,8 @@ class CookieConsentSettings {
 			"functional" => "functionality_storage",
 			"personalization" => "personalization_storage",
 			"security" => "security_storage",
+			"ad_personalization" => "ad_personalization",
+			"ad_user_data" => "ad_user_data",
 		];
 
 		$granted = [];
