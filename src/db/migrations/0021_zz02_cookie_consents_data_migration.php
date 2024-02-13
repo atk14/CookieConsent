@@ -9,7 +9,7 @@ class Zz02CookieConsentsDataMigration extends ApplicationMigration {
 		if(TEST){ return; }
 
 		CookieConsentCategory::FindFirst("code", "ad_personalization") || ( CookieConsentCategory::CreateNewRecord([
-			"id" => 5,
+			"id" => 7,
 			"cookie_consent_id" => 1,
 			"code" => "ad_personalization",
 			"necessary" => false,
@@ -21,7 +21,7 @@ class Zz02CookieConsentsDataMigration extends ApplicationMigration {
 		]) );
 
 		CookieConsentCategory::FindFirst("code", "ad_user_data") || ( CookieConsentCategory::CreateNewRecord([
-			"id" => 6,
+			"id" => 8,
 			"cookie_consent_id" => 1,
 			"code" => "ad_user_data",
 			"active" => false,
