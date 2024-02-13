@@ -1,7 +1,7 @@
 <?php
 // migration from package atk14/cookie-consent
 
-class Zz01CookieConsentsDataMigration extends ApplicationMigration {
+class Zz02CookieConsentsDataMigration extends ApplicationMigration {
 
 	function up(){
 
