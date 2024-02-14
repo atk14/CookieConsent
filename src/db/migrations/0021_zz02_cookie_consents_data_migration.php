@@ -17,7 +17,7 @@ class Zz02CookieConsentsDataMigration extends ApplicationMigration {
 			"title_en" => "Consent with personalized ads",
 			"title_cs" => "Souhlas s personalizovanou reklamou",
 			"description_en" => "This consent is given for the purpose of targeting personalised advertising.",
-			"description_cs" => "Tento souhlas uděluje za účelem cílení personalizované reklamy.",
+			"description_cs" => "Tento souhlas uživatel uděluje za účelem cílení personalizované reklamy.",
 		]) );
 
 		CookieConsentCategory::FindFirst("code", "ad_user_data") || ( CookieConsentCategory::CreateNewRecord([
@@ -28,8 +28,8 @@ class Zz02CookieConsentsDataMigration extends ApplicationMigration {
 			"necessary" => false,
 			"title_en" => "Consent to marketing activities",
 			"title_cs" => "Souhlas s marketingovými aktivitami",
-			"description_en" => "Used to set up consent to send user data to Google for advertising purposes",
-			"description_cs" => "Tento souhlas je určen pro zpracování údajů o uživatelích do Googlu pro reklamní účely",
+			"description_en" => "Used to set up consent to send user data to Google services for advertising purposes",
+			"description_cs" => "Slouží k nastavení souhlasu s odesíláním údajů o uživatelích do služeb Googlu pro reklamní účely",
 		]) );
 
 	}
