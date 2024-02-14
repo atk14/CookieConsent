@@ -249,6 +249,10 @@ class TcCookieConsent extends TcBase {
 		$settings = CookieConsent::GetSettings($request);
 
 		$this->assertEquals([
+			"functionality_storage" => "denied",
+			"analytics_storage" => "denied",
+			"ad_storage" => "denied",
+			"personalization_storage" => "denied",
 		],$settings->getGtmGrantedConsents());
 
 		$settings->acceptAll();

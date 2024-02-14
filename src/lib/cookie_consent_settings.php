@@ -56,7 +56,7 @@ class CookieConsentSettings {
 			foreach($cookie_data["cs"] as $code => $data){
 				if(!CookieConsentCategory::GetInstanceByCode($code)){ continue; }
 				if($ar = $this->_cleanCookieValues($data,["a","t","v"],true)){
-					if(!$settings["categories"][$code]){ $settings["categories"][$code] = []; }
+					if(!isset($settings["categories"][$code])){ $settings["categories"][$code] = []; }
 					list($accepted,$timestamp,$version) = $ar;
 					$settings["categories"][$code]["accepted"] = $accepted;
 					$settings["categories"][$code]["timestamp"] = $timestamp;
