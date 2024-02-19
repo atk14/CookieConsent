@@ -330,7 +330,7 @@ class CookieConsentSettings {
 			if ( $this->accepted($cat) ) {
 				$granted[$gtm_consent_equivalents[$code]] = "granted";
 			}
-			if ( !$this->accepted($cat) ) {
+			if ( !$this->needsToBeConfirmed() && !$this->accepted($cat) ) {
 				$granted[$gtm_consent_equivalents[$code]] = "denied";
 			}
 		}

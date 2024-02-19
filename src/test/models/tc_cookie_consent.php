@@ -248,12 +248,7 @@ class TcCookieConsent extends TcBase {
 		$request = new HTTPRequest();
 		$settings = CookieConsent::GetSettings($request);
 
-		$this->assertEquals([
-			"functionality_storage" => "denied",
-			"analytics_storage" => "denied",
-			"ad_storage" => "denied",
-			"personalization_storage" => "denied",
-		],$settings->getGtmGrantedConsents());
+		$this->assertEquals([ ],$settings->getGtmGrantedConsents());
 
 		$settings->acceptAll();
 		$this->assertEquals([
@@ -261,6 +256,14 @@ class TcCookieConsent extends TcBase {
 			"analytics_storage" => "granted",
 			"ad_storage" => "granted",
 			"personalization_storage" => "granted",
+		],$settings->getGtmGrantedConsents());
+
+		$settings->rejectAll();
+		$this->assertEquals([
+			"functionality_storage" => "denied",
+			"analytics_storage" => "denied",
+			"ad_storage" => "denied",
+			"personalization_storage" => "denied",
 		],$settings->getGtmGrantedConsents());
 	}
 }
