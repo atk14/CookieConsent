@@ -323,8 +323,12 @@ class CookieConsentSettings {
 		];
 
 		$granted = [];
+		$settings = $this->settings;
 		foreach( CookieConsentCategory::GetActiveInstances() as $cat ) {
 			$code = $cat->getCode();
+			if (!isset($settings["categories"][$code]["accepted"])) {
+				continue;
+			}
 			if ( !isset($gtm_consent_equivalents[$code]) ){ continue; }
 			if ( $this->accepted($cat) ) {
 				$granted[$gtm_consent_equivalents[$code]] = "granted";
