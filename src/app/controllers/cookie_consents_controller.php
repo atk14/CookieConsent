@@ -67,11 +67,9 @@ class CookieConsentsController extends ApplicationController {
 			return;
 		}
 		$settings = CookieConsent::GetSettings($this->request);
-		if(($method==="acceptAll" && !$settings->acceptedAll()) || ($method==="rejectAll" && !$settings->rejectedAll())){
-			$settings->$method();
-			$settings->saveSettings($this->response);
-			$this->_log_saving($options["action_taken"],$settings);
-		}
+		$settings->$method();
+		$settings->saveSettings($this->response);
+		$this->_log_saving($options["action_taken"],$settings);
 		if($this->request->xhr()){
 			$this->tpl_data["settings"] = $settings;
 			$this->template_name = "close_dialog";

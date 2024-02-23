@@ -235,8 +235,7 @@ class CookieConsentSettings {
 	}
 
 	function needsToBeConfirmed(){
-		//return true;
-		if($this->acceptedAll() || $this->rejectedAll()){ return false; }
+		//if($this->acceptedAll() || $this->rejectedAll()){ return false; }
 		foreach(CookieConsentCategory::GetActiveInstances() as $ccc){
 			if($ccc->isNecessary()){ continue; }
 			
