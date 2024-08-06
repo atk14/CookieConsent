@@ -43,7 +43,10 @@ Symlink or copy migration files into your project and perform the migration scri
 
     ./scripts/migrate
 
-Linking a proper style form either for  or Bootstrap 4 (scss) or Bootstrap 3 (less).
+Linking a proper style file either for Bootstrap 5, Bootstrap 4 (scss) or Bootstrap 3 (less).
+
+    # Bootstrap 5
+    ln -s ../../vendor/atk14/cookie-consent/src/public/styles/_cookie_consent.bs5.scss public/styles/_cookie_consent.scss
 
     # Bootstrap 4
     ln -s ../../vendor/atk14/cookie-consent/src/public/styles/_cookie_consent.scss public/styles/

@@ -1,0 +1,117 @@
+// We need to have the cookie consent banner under a modal dialog
+
+// Configuration dafaults. May be overrided before processing this file in places like _application_variables.scss
+$cookieConsentBaseZIndex: $zindex-fixed !default; // Base z-index. Do not change unless absolutely necessary
+$cookieConsentBgColor: white !default;					// Banner bg color
+$cookieConsentColor: $body-color !default;				// Banner text color
+$cookieConsentBackdropColor: black !default;		// Backdrop bg coloir
+$cookieConsentBackdropAlpha: 0.5 !default;				// Backdrop alpha (0-1)
+$cookieConsentPointerEvents: none !default;				// Does backdrop block mouse (none = content behind backdrop is clickable)
+
+.cookie_consent_banner_container{
+	> div {
+		z-index: $cookieConsentBaseZIndex;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		display: block;
+		padding: $grid-gutter-width/2 0;
+		background-color: rgba($cookieConsentBgColor, 0.97);
+		color: $cookieConsentColor;
+		box-shadow: 0px 0px 16px 0 rgba(0,0,0,0.25);
+		@supports( backdrop-filter: blur(10px) ){
+			background-color: rgba($cookieConsentBgColor,0.9);
+			backdrop-filter: blur(10px);
+		}
+
+		.btn {
+			min-width: 120px;
+		}
+
+		.rejection-link {
+			font-size: $font-size-sm;
+			margin-bottom: 0;
+		}
+	}
+
+	&::before {
+		content: " ";
+		display: block;
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: rgba( $cookieConsentBackdropColor, $cookieConsentBackdropAlpha );
+		z-index: $cookieConsentBaseZIndex - 10;
+		pointer-events: $cookieConsentPointerEvents;
+	}
+	
+	@media print {
+		display: none !important;
+	}
+}
+
+#form_cookie_consents_edit {
+	
+	.button-container {
+		.btn {
+			white-space: normal;
+		}
+		@include media-breakpoint-only(sm){
+			.btn {
+				margin-bottom: $grid-gutter-width/4 !important;
+			}
+		}
+		@include media-breakpoint-down(xs){
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			.btn {
+				margin-bottom: $grid-gutter-width/4;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	fieldset:last-child, form {
+		margin-bottom: 0;
+	}
+
+	label {
+		font-weight: $font-weight-bold;
+		font-size: 1.125em;
+	}
+
+	// colorize switches green/success
+	.custom-control-input:checked ~ .custom-control-label::before {
+		background-color: $success;
+		border-color: $success;
+	}
+	div.form-check.custom-control.custom-checkbox .custom-control-input:disabled:checked ~ .custom-control-label::before {
+		background-color: rgba( $success, 0.5 );
+		border-color: $success;
+	}
+	.custom-control-input:focus ~ .custom-control-label::before {
+		box-shadow: rgba($success, 0.25) 0px 0px 0px 3.2px;
+	}
+	.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+		border-color: $gray-500;
+	}
+}
+
+#cookie_consent_modal_id {
+	.modal-dialog {
+		max-width: 1000px;
+	}
+}
+
+
+// Hide chat beneath cookie banner
+iframe#supportBox-iframe {
+	z-index: $cookieConsentBaseZIndex - 12 !important;
+}
