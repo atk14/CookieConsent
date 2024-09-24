@@ -1,18 +1,24 @@
 <?php
 
+define("COOKIE_CONSENT_STATE_COMMAND_FORMAT", "gtm"); # gtag
+
 function smarty_function_cookie_consent_datalayer_command($params, $template) {
 	$settings = CookieConsent::GetSettings();
 
 	$out = [
 		"window.dataLayer = window.dataLayer || [];",
-#		"function gtag(){dataLayer.push(arguments);}",
+		"function gtag(){dataLayer.push(arguments);}",
+			sprintf("gtag('consent', 'default', %s);", json_encode([
+				"analytics_storage" => "denied",
+				"ad_storage" => "denied",
+				"functionality_storage" => "denied",
+				"personalization_storage" => "denied",
+			])),
 	];
-	$out[] = sprintf('window.dataLayer.push( %s );', json_encode(["event" => "consentUpdate", "grantedConsents" => $settings->getGtmGrantedConsents()]));
 
 	if($settings->needsToBeConfirmed()){
 		$out[] = 'document.addEventListener( "consentupdate", function( ev ){';
-		//$out[] = '  console.log( ev.grantedConsents );';
-		$out[] = '  window.dataLayer.push( { "event": "consentUpdate", "grantedConsents": ev.grantedConsents } );';
+		$out[] = "\tgtag('consent', 'update', ev.grantedConsents );";
 		$out[] = '} );';
 	}
 
