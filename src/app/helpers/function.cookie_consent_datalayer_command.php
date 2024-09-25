@@ -1,7 +1,5 @@
 <?php
 
-define("COOKIE_CONSENT_STATE_COMMAND_FORMAT", "gtm"); # gtag
-
 function smarty_function_cookie_consent_datalayer_command($params, $template) {
 	$settings = CookieConsent::GetSettings();
 
@@ -19,7 +17,11 @@ function smarty_function_cookie_consent_datalayer_command($params, $template) {
 	if($settings->needsToBeConfirmed()){
 		$out[] = 'document.addEventListener( "consentupdate", function( ev ){';
 		$out[] = "\tgtag('consent', 'update', ev.grantedConsents );";
+		$out[] = "gtag('atk14_consent_updated', ev.grantedConsents)";
 		$out[] = '} );';
+	} else {
+		$out[] = sprintf("gtag('consent', 'update', %s)", json_encode($settings->getGtmGrantedConsents()));
+		$out[] = sprintf("gtag('atk14_consent_updated', %s)", json_encode($settings->getGtmGrantedConsents()));
 	}
 
 	Atk14Require::Helper("block.javascript_tag");
