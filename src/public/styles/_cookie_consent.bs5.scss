@@ -102,6 +102,9 @@ $cookieConsentPointerEvents: none !default;				// Does backdrop block mouse (non
 	.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
 		border-color: $gray-500;
 	}
+	.form-check:not(.form-switch) {
+		@extend .form-switch;
+	}
 }
 
 #cookie_consent_modal_id {
