@@ -341,10 +341,18 @@ class CookieConsentSettings {
 	}
 
 	function sendConsentDefaultCommand() {
+		$consent = CookieConsent::GetInstance();
+		if (!$consent->hasKey("send_consent_default_command")) {
+			return false;
+		}
 		return CookieConsent::GetInstance()->getSendConsentDefaultCommand();
 	}
 
 	function sendConsentUpdateCommand() {
+		$consent = CookieConsent::GetInstance();
+		if (!$consent->hasKey("send_consent_update_command")) {
+			return false;
+		}
 		return CookieConsent::GetInstance()->getSendConsentUpdateCommand();
 	}
 

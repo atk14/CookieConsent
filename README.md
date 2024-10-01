@@ -38,12 +38,14 @@ Symlink or copy migration files into your project and perform the migration scri
     ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consents_data_migration.php db/migrations
     ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_zz01_cookie_consents_data_migration.php db/migrations
     ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_zz02_cookie_consents_data_migration.php db/migrations
+    ln -s ../../vendor/atk14/cookie-consent/src/db/migrations/0021_zz03_cookie_consents_datalayer_events.sql db/migrations
 
     #or
     cp vendor/atk14/cookie-consent/src/db/migrations/0020_cookie_consents.sql db/migrations/
     cp vendor/atk14/cookie-consent/src/db/migrations/0021_cookie_consents_data_migration.php db/migrations/
     cp vendor/atk14/cookie-consent/src/db/migrations/0021_zz01_cookie_consents_data_migration.php db/migrations/
     cp vendor/atk14/cookie-consent/src/db/migrations/0021_zz02_cookie_consents_data_migration.php db/migrations/
+    cp vendor/atk14/cookie-consent/src/db/migrations/0021_zz03_cookie_consents_datalayer_events.sql db/migrations/
 
     ./scripts/migrate
 
