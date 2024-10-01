@@ -25,5 +25,17 @@ class EditForm extends AdminForm {
 			"label" => _("Text v patičce dialogu"),
 			"help_text" => _("Formátování Markdown"),
 		]));
+
+		$this->add_field("send_consent_default_command", new BooleanField([
+			"label" => _("Odeslat příkaz pro výchozí nastavení souhlasu"),
+			"help_text" => _("gtag('consent','default', { ... }"),
+			"required" => false,
+		]));
+
+		$this->add_field("send_consent_update_command", new BooleanField([
+			"label" => _("Odeslat příkaz pro aktualizaci nastavení souhlasu"),
+			"help_text" => _("gtag('consent','update', { ... }"),
+			"required" => false,
+		]));
 	}
 }

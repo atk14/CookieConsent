@@ -6,13 +6,15 @@ function smarty_function_cookie_consent_datalayer_command($params, $template) {
 	$out = [
 		"window.dataLayer = window.dataLayer || [];",
 		"function gtag(){dataLayer.push(arguments);}",
-			sprintf("gtag('consent', 'default', %s);", json_encode([
-				"analytics_storage" => "denied",
-				"ad_storage" => "denied",
-				"functionality_storage" => "denied",
-				"personalization_storage" => "denied",
-			])),
 	];
+	if ($settings->sendConsentDefaultCommand()) {
+		$out[] = sprintf("gtag('consent', 'default', %s);", json_encode([
+			"analytics_storage" => "denied",
+			"ad_storage" => "denied",
+			"functionality_storage" => "denied",
+			"personalization_storage" => "denied",
+		]));
+	}
 
 	if($settings->needsToBeConfirmed()){
 		$out[] = 'document.addEventListener( "consentupdate", function( ev ){';
@@ -23,8 +25,9 @@ function smarty_function_cookie_consent_datalayer_command($params, $template) {
 		})";
 		$out[] = '} );';
 	} else {
-		$out[] = sprintf("gtag('consent', 'update', %s)", json_encode($settings->getGtmGrantedConsents()));
-#		$out[] = sprintf("gtag('event', 'atk14_consent_updated', %s)", json_encode(["grantedConsents" => $settings->getGtmGrantedConsents()]));
+		if ($settings->sendConsentUpdateCommand()) {
+			$out[] = sprintf("gtag('consent', 'update', %s)", json_encode($settings->getGtmGrantedConsents()));
+		}
 		$out[] = sprintf("window.dataLayer.push(%s)", json_encode([
 			"event" => "atk14_consent_updated",
 			"grantedConsents" => $settings->getGtmGrantedConsents()

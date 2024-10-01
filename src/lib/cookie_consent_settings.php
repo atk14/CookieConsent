@@ -340,6 +340,14 @@ class CookieConsentSettings {
 		return $granted;
 	}
 
+	function sendConsentDefaultCommand() {
+		return CookieConsent::GetInstance()->getSendConsentDefaultCommand();
+	}
+
+	function sendConsentUpdateCommand() {
+		return CookieConsent::GetInstance()->getSendConsentUpdateCommand();
+	}
+
 	function _timestampToDatetime($timestamp){
 		return $timestamp ? date("Y-m-d H:i:s",$timestamp) : null;
 	}
