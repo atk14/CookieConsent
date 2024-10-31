@@ -7,6 +7,18 @@ class CookieConsentSettings {
 	protected $request;
 	protected $current_time = null;
 
+	static $gtm_consent_equivalents = [
+		#			"necessary" => "necessary", # there is no equivalent category in GTM
+		# codes mapped to values known to GTMs' Consent Mode API
+		"advertising" => "ad_storage",
+		"analytics" => "analytics_storage",
+		"functional" => "functionality_storage",
+		"personalization" => "personalization_storage",
+		"security" => "security_storage",
+		"ad_personalization" => "ad_personalization",
+		"ad_user_data" => "ad_user_data",
+	];
+
 	protected function __construct($request,$options = []){
 		$options += [
 			"current_time" => null,
@@ -310,18 +322,6 @@ class CookieConsentSettings {
 	 *	// etc.
 	 */
 	function getGtmGrantedConsents(){
-		$gtm_consent_equivalents = [
-#			"necessary" => "necessary", # there is no equivalent category in GTM
-			# codes mapped to values known to GTMs' Consent Mode API
-			"advertising" => "ad_storage",
-			"analytics" => "analytics_storage",
-			"functional" => "functionality_storage",
-			"personalization" => "personalization_storage",
-			"security" => "security_storage",
-			"ad_personalization" => "ad_personalization",
-			"ad_user_data" => "ad_user_data",
-		];
-
 		$granted = [];
 		$settings = $this->settings;
 		foreach( CookieConsentCategory::GetActiveInstances() as $cat ) {
@@ -329,15 +329,31 @@ class CookieConsentSettings {
 			if (!isset($settings["categories"][$code]["accepted"])) {
 				continue;
 			}
-			if ( !isset($gtm_consent_equivalents[$code]) ){ continue; }
+			if ( !isset(static::$gtm_consent_equivalents[$code]) ){ continue; }
+			$equiv = static::$gtm_consent_equivalents[$code];
 			if ( $this->accepted($cat) ) {
-				$granted[$gtm_consent_equivalents[$code]] = "granted";
+				$granted[$equiv] = "granted";
 			}
 			if ( !$this->needsToBeConfirmed() && !$this->accepted($cat) ) {
-				$granted[$gtm_consent_equivalents[$code]] = "denied";
+				$granted[$equiv] = "denied";
 			}
 		}
 		return $granted;
+	}
+
+	/**
+	 * Default consent states for active consent categories
+	 */
+	function getDefaultConsentStates() {
+		$out = [];
+		foreach( CookieConsentCategory::GetActiveInstances() as $cat ) {
+      $code = $cat->getCode();
+      if ( !isset(static::$gtm_consent_equivalents[$code]) ){ continue; }
+			$equiv = static::$gtm_consent_equivalents[$code];
+			$out[$equiv] = "denied";
+    }
+
+		return $out;
 	}
 
 	function sendConsentDefaultCommand() {

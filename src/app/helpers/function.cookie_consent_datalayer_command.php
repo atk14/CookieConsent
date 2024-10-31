@@ -8,12 +8,7 @@ function smarty_function_cookie_consent_datalayer_command($params, $template) {
 		"function gtag(){dataLayer.push(arguments);}",
 	];
 	if ($settings->sendConsentDefaultCommand()) {
-		$out[] = sprintf("gtag('consent', 'default', %s);", json_encode([
-			"analytics_storage" => "denied",
-			"ad_storage" => "denied",
-			"functionality_storage" => "denied",
-			"personalization_storage" => "denied",
-		]));
+		$out[] = sprintf("gtag('consent', 'default', %s);", json_encode($settings->getDefaultConsentStates()));
 	}
 
 	if($settings->needsToBeConfirmed()){
