@@ -3,6 +3,10 @@ All notable changes to Cookie Consent will be documented in this file.
 
 ## [Unreleased]
 
+## Version 1.0.10
+
+* b645d5b - New method returning default consent states for all active consent categories
+
 ## Version 1.0.9
 
 * e6f92d4 - Sending consent config commands can be sent
