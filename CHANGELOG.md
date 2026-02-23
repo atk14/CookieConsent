@@ -3,6 +3,10 @@ All notable changes to Cookie Consent will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.11] 2026-02-23
+
+* 19b5cc4 - Preventing fultext indexers from indexing of cookie consent banner
+
 ## Version 1.0.10
 
 * b645d5b - New method returning default consent states for all active consent categories
@@ -15,4 +19,4 @@ All notable changes to Cookie Consent will be documented in this file.
 
 * 1a88f53 - Added style file for Bootstrap 5
 
-## [1.0] - 2023-02-17
+## [1.0] 2023-02-17
