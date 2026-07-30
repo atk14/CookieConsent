@@ -1,7 +1,7 @@
 <?php
 class CookieConsent extends ApplicationModel implements Translatable {
 
-	const VERSION = "1.0.11";
+	const VERSION = "1.0.12";
 
 	static function GetTranslatableFields(){ return ["banner_title", "banner_text", "dialog_title", "dialog_header_text", "dialog_footer_text"]; }
 
