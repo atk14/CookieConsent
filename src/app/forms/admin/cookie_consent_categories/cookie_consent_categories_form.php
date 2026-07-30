@@ -4,7 +4,7 @@ class CookieConsentCategoriesForm extends AdminForm {
 	function set_up(){
 		$this->add_field("code", new RegexField("/^[a-z0-9_]+$/",[
 			"label" => _("Kód sekce"),
-			"max_legth" => 255,
+			"max_length" => 255,
 			"hints" => [
 				"advertising",
 				"analytics",
