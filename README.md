@@ -106,7 +106,7 @@ Include CookieConsentsRouter with some nice URIs.
 Usage
 -----
 
-Checking whether a category of the cookie consent is accepted or not in Javascrip and PHP:
+Checking whether a category of the cookie consent is accepted or not in JavaScript and PHP:
 
 #### Javascript
 
@@ -119,6 +119,79 @@ Checking whether a category of the cookie consent is accepted or not in Javascri
     if(CookieConsent::Accepted("advertising")){
       // accepted
     }
+
+Google Consent Mode
+-------------------
+
+The `{cookie_consent_datalayer_command}` helper outputs the necessary `gtag()` calls for [Google Consent Mode v2](https://developers.google.com/tag-platform/security/guides/consent?hl=en). Place it in `<head>` **before** your GTM snippet.
+
+Category codes map to GTM consent types as follows:
+
+| Category code      | GTM consent type          |
+|--------------------|---------------------------|
+| `advertising`      | `ad_storage`              |
+| `analytics`        | `analytics_storage`       |
+| `functional`       | `functionality_storage`   |
+| `personalization`  | `personalization_storage` |
+| `security`         | `security_storage`        |
+| `ad_personalization` | `ad_personalization`    |
+| `ad_user_data`     | `ad_user_data`            |
+
+The `necessary` category has no GTM equivalent and is always treated as granted.
+
+Two boolean columns on the `cookie_consents` record control the helper's behavior:
+
+- `send_consent_default_command` — when enabled, outputs `gtag('consent', 'default', ...)` with all categories denied (for visitors who haven't decided yet).
+- `send_consent_update_command` — when enabled, outputs `gtag('consent', 'update', ...)` for returning visitors whose consent is already saved.
+
+Both can be toggled in the admin under Cookie consent settings.
+
+Category management
+-------------------
+
+Categories are managed in the admin under **Cookie consent → Categories**. Each category has:
+
+- **Code** — identifier used in PHP and JavaScript (e.g. `advertising`, `analytics`).
+- **Version** — integer starting at 1. Increment it whenever the category's purpose or scope changes in a way that requires fresh consent from existing users. On the next page load, the banner will reappear for anyone who previously accepted or rejected this category.
+- **Cookies regexp** — optional regular expression (e.g. `/^(_ga.*|_gid.*)$/`). When a user rejects a category, all cookies whose names match this pattern are automatically deleted from their browser.
+- **Necessary** — if checked, the category is always accepted and cannot be rejected by the user.
+
+Statistics
+----------
+
+Consent events are logged to `application.log` as `cookie_consent_saved:` entries. To export them as CSV:
+
+    ./local_scripts/export_cookie_consent_statistics        # last 10 days
+    ./local_scripts/export_cookie_consent_statistics 30     # last 30 days
+
+Or download directly from the admin under **Cookie consent → Statistics**.
+
+Cookie format
+-------------
+
+The consent is stored in a browser cookie named `consent` as Base64-encoded JSON.
+
+    base64_decode($cookie_value) // → JSON string
+    json_decode(..., true)       // → array
+
+The JSON structure uses compact keys to keep the cookie small:
+
+    {
+      "c_v": "1.0.11",      // package version (used as cookie schema indicator)
+      "c_t": "1732012345",  // timestamp of the last save
+      "all_a": "a",         // "a" = all accepted, "r" = all rejected, "" = not decided
+      "all_t": "1732012345",
+      "h": "www.example.com",
+      "cs": {
+        "analytics":     { "a": "a", "t": "1732012345", "v": "2" },
+        "advertising":   { "a": "r", "t": "1732012345", "v": "3" },
+        "functional":    { "a": "a", "t": "1732012345", "v": "1" }
+      }
+    }
+
+Per-category `a` values: `"a"` = accepted, `"r"` = rejected, `""` = not yet decided. The `v` field is the category version at the time of consent — if the version in the database is later incremented, the user is asked to confirm again.
+
+The cookie is only written when the user explicitly interacts with the banner or dialog. New visitors receive no cookie until they make a choice.
 
 Requirements
 ------------
