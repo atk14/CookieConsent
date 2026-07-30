@@ -40,7 +40,7 @@ The `consent` cookie stores base64(JSON) with compact keys:
 
 | Key | Meaning |
 |-----|---------|
-| `c_v` | CookieConsent::VERSION |
+| `c_v` | CookieConsent::VERSION — package version, used in the cookie as a schema indicator for future format migrations |
 | `c_t` | save timestamp |
 | `all_a` | `"a"`=all accepted, `"r"`=all rejected, `""`=undecided |
 | `all_t` | timestamp for all-accept/reject |
