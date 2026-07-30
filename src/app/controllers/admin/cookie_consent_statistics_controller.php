@@ -12,7 +12,11 @@ class CookieConsentStatisticsController extends AdminController {
 		}
 		if($this->params->getString("format")==="csv"){
 			$env = strtolower($ATK14_GLOBAL->getEnvironment()); // "production", "development"
-			$cmd = "ATK14_ENV=$env php ".ATK14_DOCUMENT_ROOT."/local_scripts/export_cookie_consent_statistics".($days ? " {$days}" : "");
+			$cmd = sprintf("ATK14_ENV=%s php %s%s",
+					escapeshellarg($env),
+					escapeshellarg(ATK14_DOCUMENT_ROOT."/local_scripts/export_cookie_consent_statistics"),
+					$days ? " ".escapeshellarg($days) : ""
+				);
 			$content = `$cmd`;
 			$this->render_template = false;
 			$this->response->setContentType("text/csv");
