@@ -17,7 +17,7 @@ class CookieConsentCategoriesController extends AdminController {
 	}
 
 	function destroy(){
-
+		$this->_destroy();
 	}
 
 	function set_rank(){
